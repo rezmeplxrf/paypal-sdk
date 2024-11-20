@@ -16,21 +16,15 @@ PaymentInstruction _$PaymentInstructionFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$PaymentInstructionToJson(PaymentInstruction instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('disbursement_mode',
-      _$DisbursementModeEnumMap[instance.disbursementMode]);
-  writeNotNull('payee_pricing_tier_id', instance.payeePricingTierId);
-  writeNotNull('platform_fee', instance.platformFee);
-  return val;
-}
+Map<String, dynamic> _$PaymentInstructionToJson(PaymentInstruction instance) =>
+    <String, dynamic>{
+      if (_$DisbursementModeEnumMap[instance.disbursementMode]
+          case final value?)
+        'disbursement_mode': value,
+      if (instance.payeePricingTierId case final value?)
+        'payee_pricing_tier_id': value,
+      if (instance.platformFee case final value?) 'platform_fee': value,
+    };
 
 const _$DisbursementModeEnumMap = {
   DisbursementMode.instant: 'INSTANCE',
@@ -45,21 +39,14 @@ ProcessorResponse _$ProcessorResponseFromJson(Map<String, dynamic> json) =>
       paymentAdviceCode: json['payment_advice_code'] as String?,
     );
 
-Map<String, dynamic> _$ProcessorResponseToJson(ProcessorResponse instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('avs_code', instance.avsCode);
-  writeNotNull('cvv_code', instance.cvvCode);
-  writeNotNull('response_code', instance.responseCode);
-  writeNotNull('payment_advice_code', instance.paymentAdviceCode);
-  return val;
-}
+Map<String, dynamic> _$ProcessorResponseToJson(ProcessorResponse instance) =>
+    <String, dynamic>{
+      if (instance.avsCode case final value?) 'avs_code': value,
+      if (instance.cvvCode case final value?) 'cvv_code': value,
+      if (instance.responseCode case final value?) 'response_code': value,
+      if (instance.paymentAdviceCode case final value?)
+        'payment_advice_code': value,
+    };
 
 RefundStatusDetails _$RefundStatusDetailsFromJson(Map<String, dynamic> json) =>
     RefundStatusDetails(

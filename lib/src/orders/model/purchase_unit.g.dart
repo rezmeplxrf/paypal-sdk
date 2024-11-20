@@ -24,25 +24,19 @@ PurchaseUnitRequest _$PurchaseUnitRequestFromJson(Map<String, dynamic> json) =>
       softDescriptor: json['soft_descriptor'] as String?,
     );
 
-Map<String, dynamic> _$PurchaseUnitRequestToJson(PurchaseUnitRequest instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('reference_id', instance.referenceId);
-  val['amount'] = instance.amount;
-  writeNotNull('payee', instance.payee);
-  writeNotNull('payment_instruction', instance.paymentInstruction);
-  writeNotNull('description', instance.description);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('soft_descriptor', instance.softDescriptor);
-  return val;
-}
+Map<String, dynamic> _$PurchaseUnitRequestToJson(
+        PurchaseUnitRequest instance) =>
+    <String, dynamic>{
+      if (instance.referenceId case final value?) 'reference_id': value,
+      'amount': instance.amount,
+      if (instance.payee case final value?) 'payee': value,
+      if (instance.paymentInstruction case final value?)
+        'payment_instruction': value,
+      if (instance.description case final value?) 'description': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.softDescriptor case final value?) 'soft_descriptor': value,
+    };
 
 PurchaseUnit _$PurchaseUnitFromJson(Map<String, dynamic> json) => PurchaseUnit(
       referenceId: json['reference_id'] as String?,
@@ -72,26 +66,19 @@ PurchaseUnit _$PurchaseUnitFromJson(Map<String, dynamic> json) => PurchaseUnit(
               json['payments'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PurchaseUnitToJson(PurchaseUnit instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('reference_id', instance.referenceId);
-  val['amount'] = instance.amount;
-  writeNotNull('payee', instance.payee);
-  writeNotNull('payment_instruction', instance.paymentInstruction);
-  writeNotNull('description', instance.description);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('soft_descriptor', instance.softDescriptor);
-  writeNotNull('id', instance.id);
-  writeNotNull('items', instance.items);
-  writeNotNull('shipping', instance.shipping);
-  writeNotNull('payments', instance.payments);
-  return val;
-}
+Map<String, dynamic> _$PurchaseUnitToJson(PurchaseUnit instance) =>
+    <String, dynamic>{
+      if (instance.referenceId case final value?) 'reference_id': value,
+      'amount': instance.amount,
+      if (instance.payee case final value?) 'payee': value,
+      if (instance.paymentInstruction case final value?)
+        'payment_instruction': value,
+      if (instance.description case final value?) 'description': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.softDescriptor case final value?) 'soft_descriptor': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.items case final value?) 'items': value,
+      if (instance.shipping case final value?) 'shipping': value,
+      if (instance.payments case final value?) 'payments': value,
+    };

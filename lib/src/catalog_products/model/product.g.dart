@@ -21,28 +21,18 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           .toList(),
     );
 
-Map<String, dynamic> _$ProductToJson(Product instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('description', instance.description);
-  writeNotNull('type', _$ProductTypeEnumMap[instance.type]);
-  writeNotNull('category', instance.category);
-  writeNotNull('image_url', instance.imageUrl);
-  writeNotNull('home_url', instance.homeUrl);
-  val['create_time'] = instance.createTime;
-  writeNotNull('update_time', instance.updateTime);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      if (instance.description case final value?) 'description': value,
+      if (_$ProductTypeEnumMap[instance.type] case final value?) 'type': value,
+      if (instance.category case final value?) 'category': value,
+      if (instance.imageUrl case final value?) 'image_url': value,
+      if (instance.homeUrl case final value?) 'home_url': value,
+      'create_time': instance.createTime,
+      if (instance.updateTime case final value?) 'update_time': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 const _$ProductTypeEnumMap = {
   ProductType.physical: 'PHYSICAL',
@@ -56,29 +46,20 @@ ProductCollection _$ProductCollectionFromJson(Map<String, dynamic> json) =>
           .map((e) =>
               ProductCollectionElement.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalItems: json['total_items'] as int?,
-      totalPages: json['total_pages'] as int?,
+      totalItems: (json['total_items'] as num?)?.toInt(),
+      totalPages: (json['total_pages'] as num?)?.toInt(),
       links: (json['links'] as List<dynamic>?)
           ?.map((e) => LinkDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ProductCollectionToJson(ProductCollection instance) {
-  final val = <String, dynamic>{
-    'products': instance.products,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('total_items', instance.totalItems);
-  writeNotNull('total_pages', instance.totalPages);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$ProductCollectionToJson(ProductCollection instance) =>
+    <String, dynamic>{
+      'products': instance.products,
+      if (instance.totalItems case final value?) 'total_items': value,
+      if (instance.totalPages case final value?) 'total_pages': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 ProductCollectionElement _$ProductCollectionElementFromJson(
         Map<String, dynamic> json) =>
@@ -93,23 +74,14 @@ ProductCollectionElement _$ProductCollectionElementFromJson(
     );
 
 Map<String, dynamic> _$ProductCollectionElementToJson(
-    ProductCollectionElement instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('description', instance.description);
-  val['create_time'] = instance.createTime;
-  val['links'] = instance.links;
-  return val;
-}
+        ProductCollectionElement instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      if (instance.description case final value?) 'description': value,
+      'create_time': instance.createTime,
+      'links': instance.links,
+    };
 
 ProductRequest _$ProductRequestFromJson(Map<String, dynamic> json) =>
     ProductRequest(
@@ -122,21 +94,13 @@ ProductRequest _$ProductRequestFromJson(Map<String, dynamic> json) =>
       homeUrl: json['home_url'] as String?,
     );
 
-Map<String, dynamic> _$ProductRequestToJson(ProductRequest instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['name'] = instance.name;
-  writeNotNull('description', instance.description);
-  val['type'] = _$ProductTypeEnumMap[instance.type]!;
-  writeNotNull('category', instance.category);
-  writeNotNull('image_url', instance.imageUrl);
-  writeNotNull('home_url', instance.homeUrl);
-  return val;
-}
+Map<String, dynamic> _$ProductRequestToJson(ProductRequest instance) =>
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      'name': instance.name,
+      if (instance.description case final value?) 'description': value,
+      'type': _$ProductTypeEnumMap[instance.type]!,
+      if (instance.category case final value?) 'category': value,
+      if (instance.imageUrl case final value?) 'image_url': value,
+      if (instance.homeUrl case final value?) 'home_url': value,
+    };

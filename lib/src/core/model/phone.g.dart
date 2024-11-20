@@ -12,21 +12,11 @@ Phone _$PhoneFromJson(Map<String, dynamic> json) => Phone(
       extensionNumber: json['extension_number'] as String?,
     );
 
-Map<String, dynamic> _$PhoneToJson(Phone instance) {
-  final val = <String, dynamic>{
-    'country_code': instance.countryCode,
-    'national_number': instance.nationalNumber,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('extension_number', instance.extensionNumber);
-  return val;
-}
+Map<String, dynamic> _$PhoneToJson(Phone instance) => <String, dynamic>{
+      'country_code': instance.countryCode,
+      'national_number': instance.nationalNumber,
+      if (instance.extensionNumber case final value?) 'extension_number': value,
+    };
 
 PhoneWithType _$PhoneWithTypeFromJson(Map<String, dynamic> json) =>
     PhoneWithType(

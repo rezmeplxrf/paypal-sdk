@@ -13,22 +13,12 @@ Patch _$PatchFromJson(Map<String, dynamic> json) => Patch(
       from: json['from'] as String?,
     );
 
-Map<String, dynamic> _$PatchToJson(Patch instance) {
-  final val = <String, dynamic>{
-    'op': _$PatchOperationEnumMap[instance.op]!,
-    'path': instance.path,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('value', instance.value);
-  writeNotNull('from', instance.from);
-  return val;
-}
+Map<String, dynamic> _$PatchToJson(Patch instance) => <String, dynamic>{
+      'op': _$PatchOperationEnumMap[instance.op]!,
+      'path': instance.path,
+      if (instance.value case final value?) 'value': value,
+      if (instance.from case final value?) 'from': value,
+    };
 
 const _$PatchOperationEnumMap = {
   PatchOperation.add: 'add',

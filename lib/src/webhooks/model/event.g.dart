@@ -20,53 +20,33 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
           .toList(),
     );
 
-Map<String, dynamic> _$EventToJson(Event instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'create_time': instance.createTime,
-    'resource_type': instance.resourceType,
-    'event_version': instance.eventVersion,
-    'event_type': instance.eventType,
-    'summary': instance.summary,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('resource_version', instance.resourceVersion);
-  writeNotNull('resource', instance.resource);
-  val['links'] = instance.links;
-  return val;
-}
+Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
+      'id': instance.id,
+      'create_time': instance.createTime,
+      'resource_type': instance.resourceType,
+      'event_version': instance.eventVersion,
+      'event_type': instance.eventType,
+      'summary': instance.summary,
+      if (instance.resourceVersion case final value?) 'resource_version': value,
+      if (instance.resource case final value?) 'resource': value,
+      'links': instance.links,
+    };
 
 EventList _$EventListFromJson(Map<String, dynamic> json) => EventList(
       (json['events'] as List<dynamic>)
           .map((e) => Event.fromJson(e as Map<String, dynamic>))
           .toList(),
-      json['count'] as int?,
+      (json['count'] as num?)?.toInt(),
       (json['links'] as List<dynamic>)
           .map((e) => LinkDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$EventListToJson(EventList instance) {
-  final val = <String, dynamic>{
-    'events': instance.events,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('count', instance.count);
-  val['links'] = instance.links;
-  return val;
-}
+Map<String, dynamic> _$EventListToJson(EventList instance) => <String, dynamic>{
+      'events': instance.events,
+      if (instance.count case final value?) 'count': value,
+      'links': instance.links,
+    };
 
 ResourceVersion _$ResourceVersionFromJson(Map<String, dynamic> json) =>
     ResourceVersion(
@@ -87,22 +67,13 @@ EventType _$EventTypeFromJson(Map<String, dynamic> json) => EventType(
           .toList(),
     );
 
-Map<String, dynamic> _$EventTypeToJson(EventType instance) {
-  final val = <String, dynamic>{
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('description', instance.description);
-  writeNotNull('status', instance.status);
-  writeNotNull('resource_versions', instance.resourceVersions);
-  return val;
-}
+Map<String, dynamic> _$EventTypeToJson(EventType instance) => <String, dynamic>{
+      'name': instance.name,
+      if (instance.description case final value?) 'description': value,
+      if (instance.status case final value?) 'status': value,
+      if (instance.resourceVersions case final value?)
+        'resource_versions': value,
+    };
 
 EventTypeList _$EventTypeListFromJson(Map<String, dynamic> json) =>
     EventTypeList(
@@ -124,18 +95,10 @@ SimulateEvent _$SimulateEventFromJson(Map<String, dynamic> json) =>
       resourceVersion: json['resource_version'] as String?,
     );
 
-Map<String, dynamic> _$SimulateEventToJson(SimulateEvent instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('webhook_id', instance.webhookId);
-  writeNotNull('url', instance.url);
-  val['event_type'] = instance.eventType;
-  writeNotNull('resource_version', instance.resourceVersion);
-  return val;
-}
+Map<String, dynamic> _$SimulateEventToJson(SimulateEvent instance) =>
+    <String, dynamic>{
+      if (instance.webhookId case final value?) 'webhook_id': value,
+      if (instance.url case final value?) 'url': value,
+      'event_type': instance.eventType,
+      if (instance.resourceVersion case final value?) 'resource_version': value,
+    };

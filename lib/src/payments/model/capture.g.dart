@@ -21,23 +21,16 @@ CaptureRequest _$CaptureRequestFromJson(Map<String, dynamic> json) =>
       softDescriptor: json['soft_descriptor'] as String?,
     );
 
-Map<String, dynamic> _$CaptureRequestToJson(CaptureRequest instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('note_to_payer', instance.noteToPayer);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('final_capture', instance.finalCapture);
-  writeNotNull('payment_instruction', instance.paymentInstruction);
-  writeNotNull('soft_descriptor', instance.softDescriptor);
-  return val;
-}
+Map<String, dynamic> _$CaptureRequestToJson(CaptureRequest instance) =>
+    <String, dynamic>{
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.noteToPayer case final value?) 'note_to_payer': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.finalCapture case final value?) 'final_capture': value,
+      if (instance.paymentInstruction case final value?)
+        'payment_instruction': value,
+      if (instance.softDescriptor case final value?) 'soft_descriptor': value,
+    };
 
 Capture _$CaptureFromJson(Map<String, dynamic> json) => Capture(
       $enumDecodeNullable(_$CaptureStatusEnumMap, json['status']),
@@ -72,33 +65,28 @@ Capture _$CaptureFromJson(Map<String, dynamic> json) => Capture(
       json['update_time'] as String?,
     );
 
-Map<String, dynamic> _$CaptureToJson(Capture instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$CaptureStatusEnumMap[instance.status]);
-  writeNotNull('status_details', instance.statusDetails);
-  writeNotNull('id', instance.id);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('seller_protection', instance.sellerProtection);
-  writeNotNull('final_capture', instance.finalCapture);
-  writeNotNull(
-      'seller_receivable_breakdown', instance.sellerReceivableBreakdown);
-  writeNotNull('disbursement_mode',
-      _$DisbursementModeEnumMap[instance.disbursementMode]);
-  writeNotNull('links', instance.links);
-  writeNotNull('processor_response', instance.processorResponse);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  return val;
-}
+Map<String, dynamic> _$CaptureToJson(Capture instance) => <String, dynamic>{
+      if (_$CaptureStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.sellerProtection case final value?)
+        'seller_protection': value,
+      if (instance.finalCapture case final value?) 'final_capture': value,
+      if (instance.sellerReceivableBreakdown case final value?)
+        'seller_receivable_breakdown': value,
+      if (_$DisbursementModeEnumMap[instance.disbursementMode]
+          case final value?)
+        'disbursement_mode': value,
+      if (instance.links case final value?) 'links': value,
+      if (instance.processorResponse case final value?)
+        'processor_response': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+    };
 
 const _$CaptureStatusEnumMap = {
   CaptureStatus.completed: 'COMPLETED',
@@ -121,18 +109,11 @@ CaptureStatusDetails _$CaptureStatusDetailsFromJson(
     );
 
 Map<String, dynamic> _$CaptureStatusDetailsToJson(
-    CaptureStatusDetails instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('reason', _$CaptureStatusReasonEnumMap[instance.reason]);
-  return val;
-}
+        CaptureStatusDetails instance) =>
+    <String, dynamic>{
+      if (_$CaptureStatusReasonEnumMap[instance.reason] case final value?)
+        'reason': value,
+    };
 
 const _$CaptureStatusReasonEnumMap = {
   CaptureStatusReason.buyerComplaint: 'BUYER_COMPLAINT',

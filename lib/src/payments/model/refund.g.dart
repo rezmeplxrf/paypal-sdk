@@ -15,20 +15,12 @@ RefundRequest _$RefundRequestFromJson(Map<String, dynamic> json) =>
       noteToPayer: json['note_to_payer'] as String?,
     );
 
-Map<String, dynamic> _$RefundRequestToJson(RefundRequest instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('amount', instance.amount);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('note_to_payer', instance.noteToPayer);
-  return val;
-}
+Map<String, dynamic> _$RefundRequestToJson(RefundRequest instance) =>
+    <String, dynamic>{
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.noteToPayer case final value?) 'note_to_payer': value,
+    };
 
 Refund _$RefundFromJson(Map<String, dynamic> json) => Refund(
       $enumDecodeNullable(_$RefundStatusEnumMap, json['status']),
@@ -53,27 +45,20 @@ Refund _$RefundFromJson(Map<String, dynamic> json) => Refund(
       json['update_time'] as String?,
     );
 
-Map<String, dynamic> _$RefundToJson(Refund instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$RefundStatusEnumMap[instance.status]);
-  writeNotNull('status_details', instance.statusDetails);
-  writeNotNull('id', instance.id);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('note_to_payer', instance.noteToPayer);
-  writeNotNull('seller_payable_breakdown', instance.sellerPayableBreakdown);
-  writeNotNull('links', instance.links);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  return val;
-}
+Map<String, dynamic> _$RefundToJson(Refund instance) => <String, dynamic>{
+      if (_$RefundStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.noteToPayer case final value?) 'note_to_payer': value,
+      if (instance.sellerPayableBreakdown case final value?)
+        'seller_payable_breakdown': value,
+      if (instance.links case final value?) 'links': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+    };
 
 const _$RefundStatusEnumMap = {
   RefundStatus.cancelled: 'CANCELLED',
@@ -115,24 +100,18 @@ SellerPayableBreakdown _$SellerPayableBreakdownFromJson(
     );
 
 Map<String, dynamic> _$SellerPayableBreakdownToJson(
-    SellerPayableBreakdown instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('gross_amount', instance.grossAmount);
-  writeNotNull('paypal_fee', instance.paypalFee);
-  writeNotNull('paypal_fee_in_receivable_currency',
-      instance.paypalFeeInReceivableCurrency);
-  writeNotNull('net_amount', instance.netAmount);
-  writeNotNull('net_amount_in_receivable_currency',
-      instance.netAmountInReceivableCurrency);
-  writeNotNull('platform_fees', instance.platformFees);
-  writeNotNull('net_amount_breakdown', instance.netAmountBreakdown);
-  writeNotNull('total_refunded_amount', instance.totalRefundedAmount);
-  return val;
-}
+        SellerPayableBreakdown instance) =>
+    <String, dynamic>{
+      if (instance.grossAmount case final value?) 'gross_amount': value,
+      if (instance.paypalFee case final value?) 'paypal_fee': value,
+      if (instance.paypalFeeInReceivableCurrency case final value?)
+        'paypal_fee_in_receivable_currency': value,
+      if (instance.netAmount case final value?) 'net_amount': value,
+      if (instance.netAmountInReceivableCurrency case final value?)
+        'net_amount_in_receivable_currency': value,
+      if (instance.platformFees case final value?) 'platform_fees': value,
+      if (instance.netAmountBreakdown case final value?)
+        'net_amount_breakdown': value,
+      if (instance.totalRefundedAmount case final value?)
+        'total_refunded_amount': value,
+    };

@@ -36,34 +36,28 @@ Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
           .toList(),
     );
 
-Map<String, dynamic> _$SubscriptionToJson(Subscription instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('plan_id', instance.planId);
-  writeNotNull('status', _$SubscriptionStatusEnumMap[instance.status]);
-  writeNotNull('status_change_note', instance.statusChangeNote);
-  writeNotNull('status_update_time', instance.statusUpdateTime);
-  writeNotNull('start_time', instance.startTime);
-  writeNotNull('quantity', instance.quantity);
-  writeNotNull('shipping_amount', instance.shippingAmount);
-  writeNotNull('subscriber', instance.subscriber);
-  writeNotNull('billing_info', instance.billingInfo);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('plan_overridden', instance.planOverridden);
-  writeNotNull('plan', instance.plan);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      if (instance.planId case final value?) 'plan_id': value,
+      if (_$SubscriptionStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.statusChangeNote case final value?)
+        'status_change_note': value,
+      if (instance.statusUpdateTime case final value?)
+        'status_update_time': value,
+      if (instance.startTime case final value?) 'start_time': value,
+      if (instance.quantity case final value?) 'quantity': value,
+      if (instance.shippingAmount case final value?) 'shipping_amount': value,
+      if (instance.subscriber case final value?) 'subscriber': value,
+      if (instance.billingInfo case final value?) 'billing_info': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.planOverridden case final value?) 'plan_overridden': value,
+      if (instance.plan case final value?) 'plan': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 const _$SubscriptionStatusEnumMap = {
   SubscriptionStatus.approvalPending: 'APPROVAL_PENDING',
@@ -88,7 +82,7 @@ SubscriptionBillingInfo _$SubscriptionBillingInfoFromJson(
               json['last_payment'] as Map<String, dynamic>),
       nextBillingTime: json['next_billing_time'] as String?,
       finalPaymentTime: json['final_payment_time'] as String?,
-      failedPaymentsCount: json['failed_payments_count'] as int,
+      failedPaymentsCount: (json['failed_payments_count'] as num).toInt(),
       lastFailedPayment: json['last_failed_payment'] == null
           ? null
           : FailedPaymentDetails.fromJson(
@@ -96,25 +90,19 @@ SubscriptionBillingInfo _$SubscriptionBillingInfoFromJson(
     );
 
 Map<String, dynamic> _$SubscriptionBillingInfoToJson(
-    SubscriptionBillingInfo instance) {
-  final val = <String, dynamic>{
-    'outstanding_balance': instance.outstandingBalance,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('cycle_executions', instance.cycleExecutions);
-  writeNotNull('last_payment', instance.lastPayment);
-  writeNotNull('next_billing_time', instance.nextBillingTime);
-  writeNotNull('final_payment_time', instance.finalPaymentTime);
-  val['failed_payments_count'] = instance.failedPaymentsCount;
-  writeNotNull('last_failed_payment', instance.lastFailedPayment);
-  return val;
-}
+        SubscriptionBillingInfo instance) =>
+    <String, dynamic>{
+      'outstanding_balance': instance.outstandingBalance,
+      if (instance.cycleExecutions case final value?) 'cycle_executions': value,
+      if (instance.lastPayment case final value?) 'last_payment': value,
+      if (instance.nextBillingTime case final value?)
+        'next_billing_time': value,
+      if (instance.finalPaymentTime case final value?)
+        'final_payment_time': value,
+      'failed_payments_count': instance.failedPaymentsCount,
+      if (instance.lastFailedPayment case final value?)
+        'last_failed_payment': value,
+    };
 
 SubscriptionRequest _$SubscriptionRequestFromJson(Map<String, dynamic> json) =>
     SubscriptionRequest(
@@ -140,26 +128,19 @@ SubscriptionRequest _$SubscriptionRequestFromJson(Map<String, dynamic> json) =>
           : Plan.fromJson(json['plan'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SubscriptionRequestToJson(SubscriptionRequest instance) {
-  final val = <String, dynamic>{
-    'plan_id': instance.planId,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('quantity', instance.quantity);
-  writeNotNull('shipping_amount', instance.shippingAmount);
-  writeNotNull('subscriber', instance.subscriber);
-  writeNotNull('billing_info', instance.billingInfo);
-  writeNotNull('application_context', instance.applicationContext);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('plan', instance.plan);
-  return val;
-}
+Map<String, dynamic> _$SubscriptionRequestToJson(
+        SubscriptionRequest instance) =>
+    <String, dynamic>{
+      'plan_id': instance.planId,
+      if (instance.quantity case final value?) 'quantity': value,
+      if (instance.shippingAmount case final value?) 'shipping_amount': value,
+      if (instance.subscriber case final value?) 'subscriber': value,
+      if (instance.billingInfo case final value?) 'billing_info': value,
+      if (instance.applicationContext case final value?)
+        'application_context': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.plan case final value?) 'plan': value,
+    };
 
 SubscriptionCaptureRequest _$SubscriptionCaptureRequestFromJson(
         Map<String, dynamic> json) =>
@@ -206,25 +187,17 @@ SubscriptionReviseRequest _$SubscriptionReviseRequestFromJson(
     );
 
 Map<String, dynamic> _$SubscriptionReviseRequestToJson(
-    SubscriptionReviseRequest instance) {
-  final val = <String, dynamic>{
-    'plan_id': instance.planId,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('quantity', instance.quantity);
-  writeNotNull('effective_time', instance.effectiveTime);
-  writeNotNull('shipping_amount', instance.shippingAmount);
-  writeNotNull('shipping_address', instance.shippingAddress);
-  writeNotNull('application_context', instance.applicationContext);
-  writeNotNull('plan', instance.plan);
-  return val;
-}
+        SubscriptionReviseRequest instance) =>
+    <String, dynamic>{
+      'plan_id': instance.planId,
+      if (instance.quantity case final value?) 'quantity': value,
+      if (instance.effectiveTime case final value?) 'effective_time': value,
+      if (instance.shippingAmount case final value?) 'shipping_amount': value,
+      if (instance.shippingAddress case final value?) 'shipping_address': value,
+      if (instance.applicationContext case final value?)
+        'application_context': value,
+      if (instance.plan case final value?) 'plan': value,
+    };
 
 SubscriptionReviseResponse _$SubscriptionReviseResponseFromJson(
         Map<String, dynamic> json) =>
@@ -252,26 +225,18 @@ SubscriptionReviseResponse _$SubscriptionReviseResponseFromJson(
     );
 
 Map<String, dynamic> _$SubscriptionReviseResponseToJson(
-    SubscriptionReviseResponse instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('plan_id', instance.planId);
-  writeNotNull('quantity', instance.quantity);
-  writeNotNull('effective_time', instance.effectiveTime);
-  writeNotNull('shipping_amount', instance.shippingAmount);
-  writeNotNull('subscriber', instance.subscriber);
-  writeNotNull('shipping_address', instance.shippingAddress);
-  writeNotNull('plan_overridden', instance.planOverridden);
-  writeNotNull('plan', instance.plan);
-  writeNotNull('links', instance.links);
-  return val;
-}
+        SubscriptionReviseResponse instance) =>
+    <String, dynamic>{
+      if (instance.planId case final value?) 'plan_id': value,
+      if (instance.quantity case final value?) 'quantity': value,
+      if (instance.effectiveTime case final value?) 'effective_time': value,
+      if (instance.shippingAmount case final value?) 'shipping_amount': value,
+      if (instance.subscriber case final value?) 'subscriber': value,
+      if (instance.shippingAddress case final value?) 'shipping_address': value,
+      if (instance.planOverridden case final value?) 'plan_overridden': value,
+      if (instance.plan case final value?) 'plan': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 Subscriber _$SubscriberFromJson(Map<String, dynamic> json) => Subscriber(
       name: json['name'] == null
@@ -292,23 +257,15 @@ Subscriber _$SubscriberFromJson(Map<String, dynamic> json) => Subscriber(
               json['payment_source'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SubscriberToJson(Subscriber instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('email_address', instance.emailAddress);
-  val['payer_id'] = instance.payerId;
-  writeNotNull('phone', instance.phone);
-  writeNotNull('shipping_address', instance.shippingAddress);
-  writeNotNull('payment_source', instance.paymentSource);
-  return val;
-}
+Map<String, dynamic> _$SubscriberToJson(Subscriber instance) =>
+    <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      if (instance.emailAddress case final value?) 'email_address': value,
+      'payer_id': instance.payerId,
+      if (instance.phone case final value?) 'phone': value,
+      if (instance.shippingAddress case final value?) 'shipping_address': value,
+      if (instance.paymentSource case final value?) 'payment_source': value,
+    };
 
 ApplicationContext _$ApplicationContextFromJson(Map<String, dynamic> json) =>
     ApplicationContext(
@@ -325,25 +282,19 @@ ApplicationContext _$ApplicationContextFromJson(Map<String, dynamic> json) =>
       cancelUrl: json['cancel_url'] as String,
     );
 
-Map<String, dynamic> _$ApplicationContextToJson(ApplicationContext instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('brand_name', instance.brandName);
-  writeNotNull('locale', instance.locale);
-  writeNotNull('shipping_preference',
-      _$ShippingPreferenceEnumMap[instance.shippingPreference]);
-  writeNotNull('user_action', _$UserActionEnumMap[instance.userAction]);
-  writeNotNull('payment_method', instance.paymentMethod);
-  val['return_url'] = instance.returnUrl;
-  val['cancel_url'] = instance.cancelUrl;
-  return val;
-}
+Map<String, dynamic> _$ApplicationContextToJson(ApplicationContext instance) =>
+    <String, dynamic>{
+      if (instance.brandName case final value?) 'brand_name': value,
+      if (instance.locale case final value?) 'locale': value,
+      if (_$ShippingPreferenceEnumMap[instance.shippingPreference]
+          case final value?)
+        'shipping_preference': value,
+      if (_$UserActionEnumMap[instance.userAction] case final value?)
+        'user_action': value,
+      if (instance.paymentMethod case final value?) 'payment_method': value,
+      'return_url': instance.returnUrl,
+      'cancel_url': instance.cancelUrl,
+    };
 
 const _$ShippingPreferenceEnumMap = {
   ShippingPreference.getFromFile: 'GET_FROM_FILE',

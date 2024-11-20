@@ -17,19 +17,10 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
               json['billing_address'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CardToJson(Card instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  val['number'] = instance.number;
-  val['expiry'] = instance.expiry;
-  writeNotNull('security_code', instance.securityCode);
-  writeNotNull('billing_address', instance.billingAddress);
-  return val;
-}
+Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      'number': instance.number,
+      'expiry': instance.expiry,
+      if (instance.securityCode case final value?) 'security_code': value,
+      if (instance.billingAddress case final value?) 'billing_address': value,
+    };

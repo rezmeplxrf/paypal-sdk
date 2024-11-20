@@ -8,7 +8,7 @@ part of 'pricing.dart';
 
 PricingScheme _$PricingSchemeFromJson(Map<String, dynamic> json) =>
     PricingScheme(
-      version: json['version'] as int?,
+      version: (json['version'] as num?)?.toInt(),
       fixedPrice: json['fixed_price'] == null
           ? null
           : Money.fromJson(json['fixed_price'] as Map<String, dynamic>),
@@ -21,23 +21,16 @@ PricingScheme _$PricingSchemeFromJson(Map<String, dynamic> json) =>
       updateTime: json['update_time'] as String?,
     );
 
-Map<String, dynamic> _$PricingSchemeToJson(PricingScheme instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('version', instance.version);
-  writeNotNull('fixed_price', instance.fixedPrice);
-  writeNotNull('pricing_model', _$PricingModelEnumMap[instance.pricingModel]);
-  writeNotNull('tiers', instance.tiers);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  return val;
-}
+Map<String, dynamic> _$PricingSchemeToJson(PricingScheme instance) =>
+    <String, dynamic>{
+      if (instance.version case final value?) 'version': value,
+      if (instance.fixedPrice case final value?) 'fixed_price': value,
+      if (_$PricingModelEnumMap[instance.pricingModel] case final value?)
+        'pricing_model': value,
+      if (instance.tiers case final value?) 'tiers': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+    };
 
 const _$PricingModelEnumMap = {
   PricingModel.volume: 'VOLUME',
@@ -62,7 +55,7 @@ Map<String, dynamic> _$PricingSchemesUpdateRequestToJson(
 PricingSchemeUpdateRequest _$PricingSchemeUpdateRequestFromJson(
         Map<String, dynamic> json) =>
     PricingSchemeUpdateRequest(
-      billingCycleSequence: json['billing_cycle_sequence'] as int,
+      billingCycleSequence: (json['billing_cycle_sequence'] as num).toInt(),
       pricingScheme: PricingScheme.fromJson(
           json['pricing_scheme'] as Map<String, dynamic>),
     );
@@ -82,17 +75,10 @@ PricingTier _$PricingTierFromJson(Map<String, dynamic> json) => PricingTier(
           : Money.fromJson(json['amount'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PricingTierToJson(PricingTier instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('starting_quantity', instance.startingQuantity);
-  writeNotNull('ending_quantity', instance.endingQuantity);
-  writeNotNull('amount', instance.amount);
-  return val;
-}
+Map<String, dynamic> _$PricingTierToJson(PricingTier instance) =>
+    <String, dynamic>{
+      if (instance.startingQuantity case final value?)
+        'starting_quantity': value,
+      if (instance.endingQuantity case final value?) 'ending_quantity': value,
+      if (instance.amount case final value?) 'amount': value,
+    };

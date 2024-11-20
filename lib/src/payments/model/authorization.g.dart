@@ -31,28 +31,22 @@ Authorization _$AuthorizationFromJson(Map<String, dynamic> json) =>
       json['update_time'] as String?,
     );
 
-Map<String, dynamic> _$AuthorizationToJson(Authorization instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$AuthorizationStatusEnumMap[instance.status]);
-  writeNotNull('status_details', instance.statusDetails);
-  writeNotNull('id', instance.id);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('seller_protection', instance.sellerProtection);
-  writeNotNull('expiration_time', instance.expirationTime);
-  writeNotNull('links', instance.links);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  return val;
-}
+Map<String, dynamic> _$AuthorizationToJson(Authorization instance) =>
+    <String, dynamic>{
+      if (_$AuthorizationStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.sellerProtection case final value?)
+        'seller_protection': value,
+      if (instance.expirationTime case final value?) 'expiration_time': value,
+      if (instance.links case final value?) 'links': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+    };
 
 const _$AuthorizationStatusEnumMap = {
   AuthorizationStatus.created: 'CREATED',

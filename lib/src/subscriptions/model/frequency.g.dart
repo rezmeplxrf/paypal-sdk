@@ -8,7 +8,7 @@ part of 'frequency.dart';
 
 Frequency _$FrequencyFromJson(Map<String, dynamic> json) => Frequency(
       intervalUnit: $enumDecode(_$IntervalUnitEnumMap, json['interval_unit']),
-      intervalCount: json['interval_count'] as int,
+      intervalCount: (json['interval_count'] as num).toInt(),
     );
 
 Map<String, dynamic> _$FrequencyToJson(Frequency instance) => <String, dynamic>{

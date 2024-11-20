@@ -15,20 +15,11 @@ Name _$NameFromJson(Map<String, dynamic> json) => Name(
       fullName: json['full_name'] as String?,
     );
 
-Map<String, dynamic> _$NameToJson(Name instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('prefix', instance.prefix);
-  writeNotNull('given_name', instance.givenName);
-  writeNotNull('surname', instance.surname);
-  writeNotNull('middle_name', instance.middleName);
-  writeNotNull('suffix', instance.suffix);
-  writeNotNull('full_name', instance.fullName);
-  return val;
-}
+Map<String, dynamic> _$NameToJson(Name instance) => <String, dynamic>{
+      if (instance.prefix case final value?) 'prefix': value,
+      if (instance.givenName case final value?) 'given_name': value,
+      if (instance.surname case final value?) 'surname': value,
+      if (instance.middleName case final value?) 'middle_name': value,
+      if (instance.suffix case final value?) 'suffix': value,
+      if (instance.fullName case final value?) 'full_name': value,
+    };

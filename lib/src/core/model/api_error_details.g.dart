@@ -15,19 +15,11 @@ ApiErrorDetails _$ApiErrorDetailsFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$ApiErrorDetailsToJson(ApiErrorDetails instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('field', instance.field);
-  writeNotNull('value', instance.value);
-  writeNotNull('location', instance.location);
-  val['issue'] = instance.issue;
-  writeNotNull('description', instance.description);
-  return val;
-}
+Map<String, dynamic> _$ApiErrorDetailsToJson(ApiErrorDetails instance) =>
+    <String, dynamic>{
+      if (instance.field case final value?) 'field': value,
+      if (instance.value case final value?) 'value': value,
+      if (instance.location case final value?) 'location': value,
+      'issue': instance.issue,
+      if (instance.description case final value?) 'description': value,
+    };

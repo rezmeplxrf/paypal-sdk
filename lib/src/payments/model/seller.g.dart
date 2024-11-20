@@ -14,23 +14,16 @@ SellerProtection _$SellerProtectionFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$SellerProtectionToJson(SellerProtection instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$SellerProtectionStatusEnumMap[instance.status]);
-  writeNotNull(
-      'dispute_categories',
-      instance.disputeCategories
-          ?.map((e) => _$DisputeCategoryEnumMap[e]!)
-          .toList());
-  return val;
-}
+Map<String, dynamic> _$SellerProtectionToJson(SellerProtection instance) =>
+    <String, dynamic>{
+      if (_$SellerProtectionStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.disputeCategories
+              ?.map((e) => _$DisputeCategoryEnumMap[e]!)
+              .toList()
+          case final value?)
+        'dispute_categories': value,
+    };
 
 const _$SellerProtectionStatusEnumMap = {
   SellerProtectionStatus.eligible: 'ELIGIBLE',
@@ -72,22 +65,15 @@ SellerReceivableBreakdown _$SellerReceivableBreakdownFromJson(
     );
 
 Map<String, dynamic> _$SellerReceivableBreakdownToJson(
-    SellerReceivableBreakdown instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('gross_amount', instance.grossAmount);
-  writeNotNull('paypal_fee', instance.paypalFee);
-  writeNotNull('paypal_fee_in_receivable_currency',
-      instance.paypalFeeInReceivableCurrency);
-  writeNotNull('net_amount', instance.netAmount);
-  writeNotNull('receivable_amount', instance.receivableAmount);
-  writeNotNull('exchange_rate', instance.exchangeRate);
-  writeNotNull('platform_fees', instance.platformFees);
-  return val;
-}
+        SellerReceivableBreakdown instance) =>
+    <String, dynamic>{
+      if (instance.grossAmount case final value?) 'gross_amount': value,
+      if (instance.paypalFee case final value?) 'paypal_fee': value,
+      if (instance.paypalFeeInReceivableCurrency case final value?)
+        'paypal_fee_in_receivable_currency': value,
+      if (instance.netAmount case final value?) 'net_amount': value,
+      if (instance.receivableAmount case final value?)
+        'receivable_amount': value,
+      if (instance.exchangeRate case final value?) 'exchange_rate': value,
+      if (instance.platformFees case final value?) 'platform_fees': value,
+    };

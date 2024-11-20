@@ -11,28 +11,20 @@ AccessToken _$AccessTokenFromJson(Map<String, dynamic> json) => AccessToken(
       accessToken: json['access_token'] as String,
       tokenType: json['token_type'] as String,
       appId: json['app_id'] as String,
-      expiresIn: json['expires_in'] as int,
+      expiresIn: (json['expires_in'] as num).toInt(),
       nonce: json['nonce'] as String,
     )..expiryDateTime = json['expiry_date_time'] == null
         ? null
         : DateTime.parse(json['expiry_date_time'] as String);
 
-Map<String, dynamic> _$AccessTokenToJson(AccessToken instance) {
-  final val = <String, dynamic>{
-    'scope': instance.scope,
-    'access_token': instance.accessToken,
-    'token_type': instance.tokenType,
-    'app_id': instance.appId,
-    'expires_in': instance.expiresIn,
-    'nonce': instance.nonce,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('expiry_date_time', instance.expiryDateTime?.toIso8601String());
-  return val;
-}
+Map<String, dynamic> _$AccessTokenToJson(AccessToken instance) =>
+    <String, dynamic>{
+      'scope': instance.scope,
+      'access_token': instance.accessToken,
+      'token_type': instance.tokenType,
+      'app_id': instance.appId,
+      'expires_in': instance.expiresIn,
+      'nonce': instance.nonce,
+      if (instance.expiryDateTime?.toIso8601String() case final value?)
+        'expiry_date_time': value,
+    };

@@ -27,26 +27,17 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
           .toList(),
     );
 
-Map<String, dynamic> _$OrderToJson(Order instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('payment_source', instance.paymentSource);
-  writeNotNull('intent', instance.intent);
-  writeNotNull('payer', instance.payer);
-  writeNotNull('purchase_units', instance.purchaseUnits);
-  writeNotNull('status', instance.status);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      if (instance.paymentSource case final value?) 'payment_source': value,
+      if (instance.intent case final value?) 'intent': value,
+      if (instance.payer case final value?) 'payer': value,
+      if (instance.purchaseUnits case final value?) 'purchase_units': value,
+      if (instance.status case final value?) 'status': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 OrderRequest _$OrderRequestFromJson(Map<String, dynamic> json) => OrderRequest(
       intent: $enumDecode(_$OrderRequestIntentEnumMap, json['intent']),
@@ -62,22 +53,14 @@ OrderRequest _$OrderRequestFromJson(Map<String, dynamic> json) => OrderRequest(
               json['application_context'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$OrderRequestToJson(OrderRequest instance) {
-  final val = <String, dynamic>{
-    'intent': _$OrderRequestIntentEnumMap[instance.intent]!,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('payer', instance.payer);
-  val['purchase_units'] = instance.purchaseUnits;
-  writeNotNull('application_context', instance.applicationContext);
-  return val;
-}
+Map<String, dynamic> _$OrderRequestToJson(OrderRequest instance) =>
+    <String, dynamic>{
+      'intent': _$OrderRequestIntentEnumMap[instance.intent]!,
+      if (instance.payer case final value?) 'payer': value,
+      'purchase_units': instance.purchaseUnits,
+      if (instance.applicationContext case final value?)
+        'application_context': value,
+    };
 
 const _$OrderRequestIntentEnumMap = {
   OrderRequestIntent.capture: 'CAPTURE',
@@ -105,27 +88,23 @@ ApplicationContext _$ApplicationContextFromJson(Map<String, dynamic> json) =>
               json['stored_payment_source'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ApplicationContextToJson(ApplicationContext instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('brand_name', instance.brandName);
-  writeNotNull('locale', instance.locale);
-  writeNotNull('landing_page', _$LandingPageEnumMap[instance.landingPage]);
-  writeNotNull('shipping_preference',
-      _$ShippingPreferenceEnumMap[instance.shippingPreference]);
-  writeNotNull('user_action', _$UserActionEnumMap[instance.userAction]);
-  writeNotNull('payment_method', instance.paymentMethod);
-  writeNotNull('return_url', instance.returnUrl);
-  writeNotNull('cancel_url', instance.cancelUrl);
-  writeNotNull('stored_payment_source', instance.storedPaymentSource);
-  return val;
-}
+Map<String, dynamic> _$ApplicationContextToJson(ApplicationContext instance) =>
+    <String, dynamic>{
+      if (instance.brandName case final value?) 'brand_name': value,
+      if (instance.locale case final value?) 'locale': value,
+      if (_$LandingPageEnumMap[instance.landingPage] case final value?)
+        'landing_page': value,
+      if (_$ShippingPreferenceEnumMap[instance.shippingPreference]
+          case final value?)
+        'shipping_preference': value,
+      if (_$UserActionEnumMap[instance.userAction] case final value?)
+        'user_action': value,
+      if (instance.paymentMethod case final value?) 'payment_method': value,
+      if (instance.returnUrl case final value?) 'return_url': value,
+      if (instance.cancelUrl case final value?) 'cancel_url': value,
+      if (instance.storedPaymentSource case final value?)
+        'stored_payment_source': value,
+    };
 
 const _$LandingPageEnumMap = {
   LandingPage.login: 'LOGIN',

@@ -13,17 +13,8 @@ PlatformFee _$PlatformFeeFromJson(Map<String, dynamic> json) => PlatformFee(
           : Payee.fromJson(json['payee'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PlatformFeeToJson(PlatformFee instance) {
-  final val = <String, dynamic>{
-    'amount': instance.amount,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('payee', instance.payee);
-  return val;
-}
+Map<String, dynamic> _$PlatformFeeToJson(PlatformFee instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      if (instance.payee case final value?) 'payee': value,
+    };

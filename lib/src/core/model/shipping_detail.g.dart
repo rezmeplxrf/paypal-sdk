@@ -17,20 +17,12 @@ ShippingDetail _$ShippingDetailFromJson(Map<String, dynamic> json) =>
           : AddressPortable.fromJson(json['address'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ShippingDetailToJson(ShippingDetail instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('type', _$ShippingTypeEnumMap[instance.type]);
-  writeNotNull('address', instance.address);
-  return val;
-}
+Map<String, dynamic> _$ShippingDetailToJson(ShippingDetail instance) =>
+    <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      if (_$ShippingTypeEnumMap[instance.type] case final value?) 'type': value,
+      if (instance.address case final value?) 'address': value,
+    };
 
 const _$ShippingTypeEnumMap = {
   ShippingType.shipping: 'SHIPPING',

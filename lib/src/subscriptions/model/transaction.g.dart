@@ -20,23 +20,17 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       time: json['time'] as String?,
     );
 
-Map<String, dynamic> _$TransactionToJson(Transaction instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$CaptureStatusEnumMap[instance.status]);
-  writeNotNull('id', instance.id);
-  writeNotNull('amount_with_breakdown', instance.amountWithBreakdown);
-  writeNotNull('payer_name', instance.payerName);
-  writeNotNull('payer_email', instance.payerEmail);
-  writeNotNull('time', instance.time);
-  return val;
-}
+Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
+    <String, dynamic>{
+      if (_$CaptureStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.amountWithBreakdown case final value?)
+        'amount_with_breakdown': value,
+      if (instance.payerName case final value?) 'payer_name': value,
+      if (instance.payerEmail case final value?) 'payer_email': value,
+      if (instance.time case final value?) 'time': value,
+    };
 
 const _$CaptureStatusEnumMap = {
   CaptureStatus.completed: 'COMPLETED',
@@ -51,29 +45,20 @@ TransactionsList _$TransactionsListFromJson(Map<String, dynamic> json) =>
       (json['transactions'] as List<dynamic>)
           .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
           .toList(),
-      json['total_items'] as int?,
-      json['total_pages'] as int?,
+      (json['total_items'] as num?)?.toInt(),
+      (json['total_pages'] as num?)?.toInt(),
       (json['links'] as List<dynamic>?)
           ?.map((e) => LinkDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$TransactionsListToJson(TransactionsList instance) {
-  final val = <String, dynamic>{
-    'transactions': instance.transactions,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('total_items', instance.totalItems);
-  writeNotNull('total_pages', instance.totalPages);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$TransactionsListToJson(TransactionsList instance) =>
+    <String, dynamic>{
+      'transactions': instance.transactions,
+      if (instance.totalItems case final value?) 'total_items': value,
+      if (instance.totalPages case final value?) 'total_pages': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 AmountWithBreakdown _$AmountWithBreakdownFromJson(Map<String, dynamic> json) =>
     AmountWithBreakdown(
@@ -95,21 +80,14 @@ AmountWithBreakdown _$AmountWithBreakdownFromJson(Map<String, dynamic> json) =>
           : Money.fromJson(json['net_amount'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$AmountWithBreakdownToJson(AmountWithBreakdown instance) {
-  final val = <String, dynamic>{
-    'gross_amount': instance.grossAmount,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('total_item_amount', instance.totalItemAmount);
-  writeNotNull('fee_amount', instance.feeAmount);
-  writeNotNull('shipping_amount', instance.shippingAmount);
-  writeNotNull('tax_amount', instance.taxAmount);
-  writeNotNull('net_amount', instance.netAmount);
-  return val;
-}
+Map<String, dynamic> _$AmountWithBreakdownToJson(
+        AmountWithBreakdown instance) =>
+    <String, dynamic>{
+      'gross_amount': instance.grossAmount,
+      if (instance.totalItemAmount case final value?)
+        'total_item_amount': value,
+      if (instance.feeAmount case final value?) 'fee_amount': value,
+      if (instance.shippingAmount case final value?) 'shipping_amount': value,
+      if (instance.taxAmount case final value?) 'tax_amount': value,
+      if (instance.netAmount case final value?) 'net_amount': value,
+    };

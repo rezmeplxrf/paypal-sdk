@@ -18,24 +18,16 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
       category: $enumDecodeNullable(_$ItemCategoryEnumMap, json['category']),
     );
 
-Map<String, dynamic> _$ItemToJson(Item instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  val['unit_amount'] = instance.unitAmount;
-  writeNotNull('tax', instance.tax);
-  val['quantity'] = instance.quantity;
-  writeNotNull('description', instance.description);
-  writeNotNull('sku', instance.sku);
-  writeNotNull('category', _$ItemCategoryEnumMap[instance.category]);
-  return val;
-}
+Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      'unit_amount': instance.unitAmount,
+      if (instance.tax case final value?) 'tax': value,
+      'quantity': instance.quantity,
+      if (instance.description case final value?) 'description': value,
+      if (instance.sku case final value?) 'sku': value,
+      if (_$ItemCategoryEnumMap[instance.category] case final value?)
+        'category': value,
+    };
 
 const _$ItemCategoryEnumMap = {
   ItemCategory.digitalGoods: 'DIGITAL_GOODS',

@@ -17,21 +17,12 @@ Webhook _$WebhookFromJson(Map<String, dynamic> json) => Webhook(
           .toList(),
     );
 
-Map<String, dynamic> _$WebhookToJson(Webhook instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['url'] = instance.url;
-  val['event_types'] = instance.eventTypes;
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$WebhookToJson(Webhook instance) => <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      'url': instance.url,
+      'event_types': instance.eventTypes,
+      if (instance.links case final value?) 'links': value,
+    };
 
 WebhooksList _$WebhooksListFromJson(Map<String, dynamic> json) => WebhooksList(
       (json['webhooks'] as List<dynamic>)

@@ -11,16 +11,7 @@ Payer _$PayerFromJson(Map<String, dynamic> json) => Payer(
       payerId: json['payer_id'] as String?,
     );
 
-Map<String, dynamic> _$PayerToJson(Payer instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('email_address', instance.emailAddress);
-  writeNotNull('payer_id', instance.payerId);
-  return val;
-}
+Map<String, dynamic> _$PayerToJson(Payer instance) => <String, dynamic>{
+      if (instance.emailAddress case final value?) 'email_address': value,
+      if (instance.payerId case final value?) 'payer_id': value,
+    };

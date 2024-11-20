@@ -15,22 +15,15 @@ PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
           _$StandardEntryClassCodeEnumMap, json['standard_entry_class_code']),
     );
 
-Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('payer_selected', instance.payerSelected);
-  writeNotNull(
-      'payee_preferred', _$PayeePreferredEnumMap[instance.payeePreferred]);
-  writeNotNull('standard_entry_class_code',
-      _$StandardEntryClassCodeEnumMap[instance.standardEntryClassCode]);
-  return val;
-}
+Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
+    <String, dynamic>{
+      if (instance.payerSelected case final value?) 'payer_selected': value,
+      if (_$PayeePreferredEnumMap[instance.payeePreferred] case final value?)
+        'payee_preferred': value,
+      if (_$StandardEntryClassCodeEnumMap[instance.standardEntryClassCode]
+          case final value?)
+        'standard_entry_class_code': value,
+    };
 
 const _$PayeePreferredEnumMap = {
   PayeePreferred.unrestricted: 'unrestricted',
@@ -56,23 +49,16 @@ StoredPaymentSource _$StoredPaymentSourceFromJson(Map<String, dynamic> json) =>
               json['network_transaction_reference'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$StoredPaymentSourceToJson(StoredPaymentSource instance) {
-  final val = <String, dynamic>{
-    'payment_initiator': _$PaymentInitiatorEnumMap[instance.paymentInitiator]!,
-    'payment_type': _$PaymentTypeEnumMap[instance.paymentType]!,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('usage', _$UsageEnumMap[instance.usage]);
-  writeNotNull(
-      'network_transaction_reference', instance.networkTransactionReference);
-  return val;
-}
+Map<String, dynamic> _$StoredPaymentSourceToJson(
+        StoredPaymentSource instance) =>
+    <String, dynamic>{
+      'payment_initiator':
+          _$PaymentInitiatorEnumMap[instance.paymentInitiator]!,
+      'payment_type': _$PaymentTypeEnumMap[instance.paymentType]!,
+      if (_$UsageEnumMap[instance.usage] case final value?) 'usage': value,
+      if (instance.networkTransactionReference case final value?)
+        'network_transaction_reference': value,
+    };
 
 const _$PaymentInitiatorEnumMap = {
   PaymentInitiator.customer: 'CUSTOMER',
@@ -100,21 +86,12 @@ NetworkTransactionReference _$NetworkTransactionReferenceFromJson(
     );
 
 Map<String, dynamic> _$NetworkTransactionReferenceToJson(
-    NetworkTransactionReference instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('date', instance.date);
-  val['network'] = _$NetworkEnumMap[instance.network]!;
-  return val;
-}
+        NetworkTransactionReference instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      if (instance.date case final value?) 'date': value,
+      'network': _$NetworkEnumMap[instance.network]!,
+    };
 
 const _$NetworkEnumMap = {
   Network.visa: 'VISA',
@@ -137,12 +114,14 @@ const _$NetworkEnumMap = {
 
 PaymentSource _$PaymentSourceFromJson(Map<String, dynamic> json) =>
     PaymentSource(
-      Card.fromJson(json['card'] as Map<String, dynamic>),
+      json['card'] == null
+          ? null
+          : Card.fromJson(json['card'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PaymentSourceToJson(PaymentSource instance) =>
     <String, dynamic>{
-      'card': instance.card,
+      if (instance.card case final value?) 'card': value,
     };
 
 PaymentSourceToken _$PaymentSourceTokenFromJson(Map<String, dynamic> json) =>
@@ -175,21 +154,12 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
       brand: $enumDecodeNullable(_$NetworkEnumMap, json['brand']),
     );
 
-Map<String, dynamic> _$CardToJson(Card instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('billing_address', instance.billingAddress);
-  writeNotNull('last_digits', instance.lastDigits);
-  writeNotNull('brand', _$NetworkEnumMap[instance.brand]);
-  return val;
-}
+Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      if (instance.billingAddress case final value?) 'billing_address': value,
+      if (instance.lastDigits case final value?) 'last_digits': value,
+      if (_$NetworkEnumMap[instance.brand] case final value?) 'brand': value,
+    };
 
 PaymentCollection _$PaymentCollectionFromJson(Map<String, dynamic> json) =>
     PaymentCollection(
@@ -205,20 +175,12 @@ PaymentCollection _$PaymentCollectionFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$PaymentCollectionToJson(PaymentCollection instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('authorizations', instance.authorizations);
-  writeNotNull('captures', instance.captures);
-  writeNotNull('refunds', instance.refunds);
-  return val;
-}
+Map<String, dynamic> _$PaymentCollectionToJson(PaymentCollection instance) =>
+    <String, dynamic>{
+      if (instance.authorizations case final value?) 'authorizations': value,
+      if (instance.captures case final value?) 'captures': value,
+      if (instance.refunds case final value?) 'refunds': value,
+    };
 
 AuthorizationWithAdditionalData _$AuthorizationWithAdditionalDataFromJson(
         Map<String, dynamic> json) =>
@@ -264,33 +226,28 @@ Capture _$CaptureFromJson(Map<String, dynamic> json) => Capture(
           .toList(),
     );
 
-Map<String, dynamic> _$CaptureToJson(Capture instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', instance.status);
-  writeNotNull(
-      'status_details', _$CaptureStatusReasonEnumMap[instance.statusDetails]);
-  writeNotNull('id', instance.id);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('custom_id', instance.customId);
-  writeNotNull('seller_protection', instance.sellerProtection);
-  writeNotNull('final_capture', instance.finalCapture);
-  writeNotNull(
-      'seller_receivable_breakdown', instance.sellerReceivableBreakdown);
-  writeNotNull('disbursement_mode', instance.disbursementMode);
-  writeNotNull('processor_response', instance.processorResponse);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$CaptureToJson(Capture instance) => <String, dynamic>{
+      if (instance.status case final value?) 'status': value,
+      if (_$CaptureStatusReasonEnumMap[instance.statusDetails]
+          case final value?)
+        'status_details': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.customId case final value?) 'custom_id': value,
+      if (instance.sellerProtection case final value?)
+        'seller_protection': value,
+      if (instance.finalCapture case final value?) 'final_capture': value,
+      if (instance.sellerReceivableBreakdown case final value?)
+        'seller_receivable_breakdown': value,
+      if (instance.disbursementMode case final value?)
+        'disbursement_mode': value,
+      if (instance.processorResponse case final value?)
+        'processor_response': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 const _$CaptureStatusReasonEnumMap = {
   CaptureStatusReason.buyerComplaint: 'BUYER_COMPLAINT',
@@ -328,27 +285,19 @@ Refund _$RefundFromJson(Map<String, dynamic> json) => Refund(
           .toList(),
     );
 
-Map<String, dynamic> _$RefundToJson(Refund instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', instance.status);
-  writeNotNull('status_details', instance.statusDetails);
-  writeNotNull('id', instance.id);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('invoice_id', instance.invoiceId);
-  writeNotNull('note_to_payer', instance.noteToPayer);
-  writeNotNull('seller_payable_breakdown', instance.sellerPayableBreakdown);
-  writeNotNull('create_time', instance.createTime);
-  writeNotNull('update_time', instance.updateTime);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$RefundToJson(Refund instance) => <String, dynamic>{
+      if (instance.status case final value?) 'status': value,
+      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.invoiceId case final value?) 'invoice_id': value,
+      if (instance.noteToPayer case final value?) 'note_to_payer': value,
+      if (instance.sellerPayableBreakdown case final value?)
+        'seller_payable_breakdown': value,
+      if (instance.createTime case final value?) 'create_time': value,
+      if (instance.updateTime case final value?) 'update_time': value,
+      if (instance.links case final value?) 'links': value,
+    };
 
 RefundStatus _$RefundStatusFromJson(Map<String, dynamic> json) => RefundStatus(
       status: $enumDecodeNullable(_$RefundStatusValueEnumMap, json['status']),
@@ -358,19 +307,12 @@ RefundStatus _$RefundStatusFromJson(Map<String, dynamic> json) => RefundStatus(
               json['status_details'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RefundStatusToJson(RefundStatus instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$RefundStatusValueEnumMap[instance.status]);
-  writeNotNull('status_details', instance.statusDetails);
-  return val;
-}
+Map<String, dynamic> _$RefundStatusToJson(RefundStatus instance) =>
+    <String, dynamic>{
+      if (_$RefundStatusValueEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.statusDetails case final value?) 'status_details': value,
+    };
 
 const _$RefundStatusValueEnumMap = {
   RefundStatusValue.cancelled: 'CANCELLED',
@@ -387,23 +329,16 @@ SellerProtection _$SellerProtectionFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$SellerProtectionToJson(SellerProtection instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', _$SellerProtectionStatusEnumMap[instance.status]);
-  writeNotNull(
-      'dispute_categories',
-      instance.disputeCategories
-          ?.map((e) => _$DisputeCategoryValueEnumMap[e]!)
-          .toList());
-  return val;
-}
+Map<String, dynamic> _$SellerProtectionToJson(SellerProtection instance) =>
+    <String, dynamic>{
+      if (_$SellerProtectionStatusEnumMap[instance.status] case final value?)
+        'status': value,
+      if (instance.disputeCategories
+              ?.map((e) => _$DisputeCategoryValueEnumMap[e]!)
+              .toList()
+          case final value?)
+        'dispute_categories': value,
+    };
 
 const _$SellerProtectionStatusEnumMap = {
   SellerProtectionStatus.eligible: 'ELIGIBLE',
@@ -455,23 +390,15 @@ SellerReceivableBreakdown _$SellerReceivableBreakdownFromJson(
     );
 
 Map<String, dynamic> _$SellerReceivableBreakdownToJson(
-    SellerReceivableBreakdown instance) {
-  final val = <String, dynamic>{
-    'gross_amount': instance.grossAmount,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('paypal_fee', instance.paypalFee);
-  writeNotNull('paypal_fee_in_receivable_currency',
-      instance.paypalFeeInReceivableCurrency);
-  writeNotNull('net_amount', instance.netAmount);
-  writeNotNull('receivable_amount', instance.receivableAmount);
-  writeNotNull('exchange_rate', instance.exchangeRate);
-  writeNotNull('platform_fees', instance.platformFees);
-  return val;
-}
+        SellerReceivableBreakdown instance) =>
+    <String, dynamic>{
+      'gross_amount': instance.grossAmount,
+      if (instance.paypalFee case final value?) 'paypal_fee': value,
+      if (instance.paypalFeeInReceivableCurrency case final value?)
+        'paypal_fee_in_receivable_currency': value,
+      if (instance.netAmount case final value?) 'net_amount': value,
+      if (instance.receivableAmount case final value?)
+        'receivable_amount': value,
+      if (instance.exchangeRate case final value?) 'exchange_rate': value,
+      if (instance.platformFees case final value?) 'platform_fees': value,
+    };

@@ -25,20 +25,12 @@ LastPaymentDetails _$LastPaymentDetailsFromJson(Map<String, dynamic> json) =>
       time: json['time'] as String?,
     );
 
-Map<String, dynamic> _$LastPaymentDetailsToJson(LastPaymentDetails instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('status', instance.status);
-  writeNotNull('amount', instance.amount);
-  writeNotNull('time', instance.time);
-  return val;
-}
+Map<String, dynamic> _$LastPaymentDetailsToJson(LastPaymentDetails instance) =>
+    <String, dynamic>{
+      if (instance.status case final value?) 'status': value,
+      if (instance.amount case final value?) 'amount': value,
+      if (instance.time case final value?) 'time': value,
+    };
 
 FailedPaymentDetails _$FailedPaymentDetailsFromJson(
         Map<String, dynamic> json) =>
@@ -51,23 +43,15 @@ FailedPaymentDetails _$FailedPaymentDetailsFromJson(
     );
 
 Map<String, dynamic> _$FailedPaymentDetailsToJson(
-    FailedPaymentDetails instance) {
-  final val = <String, dynamic>{
-    'amount': instance.amount,
-    'time': instance.time,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'reason_code', _$FailedPaymentReasonEnumMap[instance.reasonCode]);
-  writeNotNull('next_payment_retry_time', instance.nextPaymentRetryTime);
-  return val;
-}
+        FailedPaymentDetails instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      'time': instance.time,
+      if (_$FailedPaymentReasonEnumMap[instance.reasonCode] case final value?)
+        'reason_code': value,
+      if (instance.nextPaymentRetryTime case final value?)
+        'next_payment_retry_time': value,
+    };
 
 const _$FailedPaymentReasonEnumMap = {
   FailedPaymentReason.paymentDenied: 'paymentDenied',
@@ -90,22 +74,15 @@ PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
           _$StandardEntryClassCodeEnumMap, json['standard_entry_class_code']),
     );
 
-Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('payer_selected', instance.payerSelected);
-  writeNotNull(
-      'payee_preferred', _$PayeePreferredEnumMap[instance.payeePreferred]);
-  writeNotNull('standard_entry_class_code',
-      _$StandardEntryClassCodeEnumMap[instance.standardEntryClassCode]);
-  return val;
-}
+Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
+    <String, dynamic>{
+      if (instance.payerSelected case final value?) 'payer_selected': value,
+      if (_$PayeePreferredEnumMap[instance.payeePreferred] case final value?)
+        'payee_preferred': value,
+      if (_$StandardEntryClassCodeEnumMap[instance.standardEntryClassCode]
+          case final value?)
+        'standard_entry_class_code': value,
+    };
 
 const _$PayeePreferredEnumMap = {
   PayeePreferred.unrestricted: 'UNRESTRICTED',
@@ -127,25 +104,21 @@ PaymentPreferences _$PaymentPreferencesFromJson(Map<String, dynamic> json) =>
           : Money.fromJson(json['setup_fee'] as Map<String, dynamic>),
       setupFeeFailureAction: $enumDecodeNullable(
           _$SetupFeeFailureActionEnumMap, json['setup_fee_failure_action']),
-      paymentFailureThreshold: json['payment_failure_threshold'] as int?,
+      paymentFailureThreshold:
+          (json['payment_failure_threshold'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$PaymentPreferencesToJson(PaymentPreferences instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('auto_bill_outstanding', instance.autoBillOutstanding);
-  writeNotNull('setup_fee', instance.setupFee);
-  writeNotNull('setup_fee_failure_action',
-      _$SetupFeeFailureActionEnumMap[instance.setupFeeFailureAction]);
-  writeNotNull('payment_failure_threshold', instance.paymentFailureThreshold);
-  return val;
-}
+Map<String, dynamic> _$PaymentPreferencesToJson(PaymentPreferences instance) =>
+    <String, dynamic>{
+      if (instance.autoBillOutstanding case final value?)
+        'auto_bill_outstanding': value,
+      if (instance.setupFee case final value?) 'setup_fee': value,
+      if (_$SetupFeeFailureActionEnumMap[instance.setupFeeFailureAction]
+          case final value?)
+        'setup_fee_failure_action': value,
+      if (instance.paymentFailureThreshold case final value?)
+        'payment_failure_threshold': value,
+    };
 
 const _$SetupFeeFailureActionEnumMap = {
   SetupFeeFailureAction.continue_: 'CONTINUE',

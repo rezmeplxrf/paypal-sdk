@@ -19,20 +19,11 @@ ApiError _$ApiErrorFromJson(Map<String, dynamic> json) => ApiError(
           .toList(),
     );
 
-Map<String, dynamic> _$ApiErrorToJson(ApiError instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('message', instance.message);
-  writeNotNull('debug_id', instance.debugId);
-  writeNotNull('information_link', instance.informationLink);
-  writeNotNull('details', instance.details);
-  writeNotNull('links', instance.links);
-  return val;
-}
+Map<String, dynamic> _$ApiErrorToJson(ApiError instance) => <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      if (instance.message case final value?) 'message': value,
+      if (instance.debugId case final value?) 'debug_id': value,
+      if (instance.informationLink case final value?) 'information_link': value,
+      if (instance.details case final value?) 'details': value,
+      if (instance.links case final value?) 'links': value,
+    };

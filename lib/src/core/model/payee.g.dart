@@ -11,16 +11,7 @@ Payee _$PayeeFromJson(Map<String, dynamic> json) => Payee(
       merchantId: json['merchant_id'] as String?,
     );
 
-Map<String, dynamic> _$PayeeToJson(Payee instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('email_address', instance.emailAddress);
-  writeNotNull('merchant_id', instance.merchantId);
-  return val;
-}
+Map<String, dynamic> _$PayeeToJson(Payee instance) => <String, dynamic>{
+      if (instance.emailAddress case final value?) 'email_address': value,
+      if (instance.merchantId case final value?) 'merchant_id': value,
+    };

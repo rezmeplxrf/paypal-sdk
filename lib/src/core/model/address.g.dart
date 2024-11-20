@@ -16,23 +16,15 @@ AddressDetails _$AddressDetailsFromJson(Map<String, dynamic> json) =>
       json['sub_building'] as String?,
     );
 
-Map<String, dynamic> _$AddressDetailsToJson(AddressDetails instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('street_number', instance.streetNumber);
-  writeNotNull('street_name', instance.streetName);
-  writeNotNull('street_type', instance.streetType);
-  writeNotNull('delivery_service', instance.deliveryService);
-  writeNotNull('building_name', instance.buildingName);
-  writeNotNull('sub_building', instance.subBuilding);
-  return val;
-}
+Map<String, dynamic> _$AddressDetailsToJson(AddressDetails instance) =>
+    <String, dynamic>{
+      if (instance.streetNumber case final value?) 'street_number': value,
+      if (instance.streetName case final value?) 'street_name': value,
+      if (instance.streetType case final value?) 'street_type': value,
+      if (instance.deliveryService case final value?) 'delivery_service': value,
+      if (instance.buildingName case final value?) 'building_name': value,
+      if (instance.subBuilding case final value?) 'sub_building': value,
+    };
 
 AddressPortable _$AddressPortableFromJson(Map<String, dynamic> json) =>
     AddressPortable(
@@ -51,24 +43,16 @@ AddressPortable _$AddressPortableFromJson(Map<String, dynamic> json) =>
               json['address_details'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$AddressPortableToJson(AddressPortable instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('address_line1', instance.addressLine1);
-  writeNotNull('address_line2', instance.addressLine2);
-  writeNotNull('address_line3', instance.addressLine3);
-  writeNotNull('admin_area4', instance.adminArea4);
-  writeNotNull('admin_area3', instance.adminArea3);
-  writeNotNull('admin_area2', instance.adminArea2);
-  writeNotNull('admin_area1', instance.adminArea1);
-  writeNotNull('postal_code', instance.postalCode);
-  writeNotNull('country_code', instance.countryCode);
-  writeNotNull('address_details', instance.addressDetails);
-  return val;
-}
+Map<String, dynamic> _$AddressPortableToJson(AddressPortable instance) =>
+    <String, dynamic>{
+      if (instance.addressLine1 case final value?) 'address_line1': value,
+      if (instance.addressLine2 case final value?) 'address_line2': value,
+      if (instance.addressLine3 case final value?) 'address_line3': value,
+      if (instance.adminArea4 case final value?) 'admin_area4': value,
+      if (instance.adminArea3 case final value?) 'admin_area3': value,
+      if (instance.adminArea2 case final value?) 'admin_area2': value,
+      if (instance.adminArea1 case final value?) 'admin_area1': value,
+      if (instance.postalCode case final value?) 'postal_code': value,
+      if (instance.countryCode case final value?) 'country_code': value,
+      if (instance.addressDetails case final value?) 'address_details': value,
+    };

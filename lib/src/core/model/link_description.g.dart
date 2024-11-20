@@ -14,19 +14,10 @@ LinkDescription _$LinkDescriptionFromJson(Map<String, dynamic> json) =>
       encType: json['encType'] as String?,
     );
 
-Map<String, dynamic> _$LinkDescriptionToJson(LinkDescription instance) {
-  final val = <String, dynamic>{
-    'href': instance.href,
-    'rel': instance.rel,
-    'method': instance.method,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('encType', instance.encType);
-  return val;
-}
+Map<String, dynamic> _$LinkDescriptionToJson(LinkDescription instance) =>
+    <String, dynamic>{
+      'href': instance.href,
+      'rel': instance.rel,
+      'method': instance.method,
+      if (instance.encType case final value?) 'encType': value,
+    };
