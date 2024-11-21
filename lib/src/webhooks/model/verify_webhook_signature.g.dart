@@ -15,7 +15,7 @@ VerifyWebhookSignatureRequest _$VerifyWebhookSignatureRequestFromJson(
       transmissionSig: json['transmission_sig'] as String,
       transmissionTime: json['transmission_time'] as String,
       webhookId: json['webhook_id'] as String,
-      webhookEvent: json['webhook_event'] as String,
+      webhookEvent: json['webhook_event'] as Map<String, dynamic>,
     );
 
 Map<String, dynamic> _$VerifyWebhookSignatureRequestToJson(

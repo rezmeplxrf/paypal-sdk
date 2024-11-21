@@ -32,7 +32,7 @@ class VerifyWebhookSignatureRequest {
   final String webhookId;
 
   /// A webhook event notification.
-  final String webhookEvent;
+  final Map<String, dynamic> webhookEvent;
 
   VerifyWebhookSignatureRequest(
       {required this.authAlgo,
