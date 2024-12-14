@@ -15,6 +15,6 @@ PlatformFee _$PlatformFeeFromJson(Map<String, dynamic> json) => PlatformFee(
 
 Map<String, dynamic> _$PlatformFeeToJson(PlatformFee instance) =>
     <String, dynamic>{
-      'amount': instance.amount,
-      if (instance.payee case final value?) 'payee': value,
+      'amount': instance.amount.toJson(),
+      if (instance.payee?.toJson() case final value?) 'payee': value,
     };

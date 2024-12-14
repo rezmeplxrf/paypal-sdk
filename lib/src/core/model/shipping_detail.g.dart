@@ -19,9 +19,9 @@ ShippingDetail _$ShippingDetailFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ShippingDetailToJson(ShippingDetail instance) =>
     <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
+      if (instance.name?.toJson() case final value?) 'name': value,
       if (_$ShippingTypeEnumMap[instance.type] case final value?) 'type': value,
-      if (instance.address case final value?) 'address': value,
+      if (instance.address?.toJson() case final value?) 'address': value,
     };
 
 const _$ShippingTypeEnumMap = {

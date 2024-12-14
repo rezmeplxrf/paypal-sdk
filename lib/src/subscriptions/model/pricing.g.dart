@@ -24,10 +24,11 @@ PricingScheme _$PricingSchemeFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PricingSchemeToJson(PricingScheme instance) =>
     <String, dynamic>{
       if (instance.version case final value?) 'version': value,
-      if (instance.fixedPrice case final value?) 'fixed_price': value,
+      if (instance.fixedPrice?.toJson() case final value?) 'fixed_price': value,
       if (_$PricingModelEnumMap[instance.pricingModel] case final value?)
         'pricing_model': value,
-      if (instance.tiers case final value?) 'tiers': value,
+      if (instance.tiers?.map((e) => e.toJson()).toList() case final value?)
+        'tiers': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
     };
@@ -49,7 +50,8 @@ PricingSchemesUpdateRequest _$PricingSchemesUpdateRequestFromJson(
 Map<String, dynamic> _$PricingSchemesUpdateRequestToJson(
         PricingSchemesUpdateRequest instance) =>
     <String, dynamic>{
-      'pricing_schemes': instance.pricingSchemes,
+      'pricing_schemes':
+          instance.pricingSchemes.map((e) => e.toJson()).toList(),
     };
 
 PricingSchemeUpdateRequest _$PricingSchemeUpdateRequestFromJson(
@@ -64,7 +66,7 @@ Map<String, dynamic> _$PricingSchemeUpdateRequestToJson(
         PricingSchemeUpdateRequest instance) =>
     <String, dynamic>{
       'billing_cycle_sequence': instance.billingCycleSequence,
-      'pricing_scheme': instance.pricingScheme,
+      'pricing_scheme': instance.pricingScheme.toJson(),
     };
 
 PricingTier _$PricingTierFromJson(Map<String, dynamic> json) => PricingTier(
@@ -80,5 +82,5 @@ Map<String, dynamic> _$PricingTierToJson(PricingTier instance) =>
       if (instance.startingQuantity case final value?)
         'starting_quantity': value,
       if (instance.endingQuantity case final value?) 'ending_quantity': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
     };

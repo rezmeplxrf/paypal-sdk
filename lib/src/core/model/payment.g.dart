@@ -23,7 +23,9 @@ Map<String, dynamic> _$PaymentInstructionToJson(PaymentInstruction instance) =>
         'disbursement_mode': value,
       if (instance.payeePricingTierId case final value?)
         'payee_pricing_tier_id': value,
-      if (instance.platformFee case final value?) 'platform_fee': value,
+      if (instance.platformFee?.map((e) => e.toJson()).toList()
+          case final value?)
+        'platform_fee': value,
     };
 
 const _$DisbursementModeEnumMap = {

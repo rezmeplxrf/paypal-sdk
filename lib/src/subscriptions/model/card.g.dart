@@ -22,5 +22,6 @@ Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
       'number': instance.number,
       'expiry': instance.expiry,
       if (instance.securityCode case final value?) 'security_code': value,
-      if (instance.billingAddress case final value?) 'billing_address': value,
+      if (instance.billingAddress?.toJson() case final value?)
+        'billing_address': value,
     };

@@ -67,13 +67,17 @@ SellerReceivableBreakdown _$SellerReceivableBreakdownFromJson(
 Map<String, dynamic> _$SellerReceivableBreakdownToJson(
         SellerReceivableBreakdown instance) =>
     <String, dynamic>{
-      if (instance.grossAmount case final value?) 'gross_amount': value,
-      if (instance.paypalFee case final value?) 'paypal_fee': value,
-      if (instance.paypalFeeInReceivableCurrency case final value?)
+      if (instance.grossAmount?.toJson() case final value?)
+        'gross_amount': value,
+      if (instance.paypalFee?.toJson() case final value?) 'paypal_fee': value,
+      if (instance.paypalFeeInReceivableCurrency?.toJson() case final value?)
         'paypal_fee_in_receivable_currency': value,
-      if (instance.netAmount case final value?) 'net_amount': value,
-      if (instance.receivableAmount case final value?)
+      if (instance.netAmount?.toJson() case final value?) 'net_amount': value,
+      if (instance.receivableAmount?.toJson() case final value?)
         'receivable_amount': value,
-      if (instance.exchangeRate case final value?) 'exchange_rate': value,
-      if (instance.platformFees case final value?) 'platform_fees': value,
+      if (instance.exchangeRate?.toJson() case final value?)
+        'exchange_rate': value,
+      if (instance.platformFees?.map((e) => e.toJson()).toList()
+          case final value?)
+        'platform_fees': value,
     };

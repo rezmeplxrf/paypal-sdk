@@ -20,8 +20,9 @@ Webhook _$WebhookFromJson(Map<String, dynamic> json) => Webhook(
 Map<String, dynamic> _$WebhookToJson(Webhook instance) => <String, dynamic>{
       if (instance.id case final value?) 'id': value,
       'url': instance.url,
-      'event_types': instance.eventTypes,
-      if (instance.links case final value?) 'links': value,
+      'event_types': instance.eventTypes.map((e) => e.toJson()).toList(),
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 WebhooksList _$WebhooksListFromJson(Map<String, dynamic> json) => WebhooksList(
@@ -32,7 +33,7 @@ WebhooksList _$WebhooksListFromJson(Map<String, dynamic> json) => WebhooksList(
 
 Map<String, dynamic> _$WebhooksListToJson(WebhooksList instance) =>
     <String, dynamic>{
-      'webhooks': instance.webhooks,
+      'webhooks': instance.webhooks.map((e) => e.toJson()).toList(),
     };
 
 WebhookIds _$WebhookIdsFromJson(Map<String, dynamic> json) => WebhookIds(

@@ -20,8 +20,8 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
 
 Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
-      'unit_amount': instance.unitAmount,
-      if (instance.tax case final value?) 'tax': value,
+      'unit_amount': instance.unitAmount.toJson(),
+      if (instance.tax?.toJson() case final value?) 'tax': value,
       'quantity': instance.quantity,
       if (instance.description case final value?) 'description': value,
       if (instance.sku case final value?) 'sku': value,

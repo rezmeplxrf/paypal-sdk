@@ -20,7 +20,7 @@ Map<String, dynamic> _$AmountWithBreakdownToJson(
     <String, dynamic>{
       'currency_code': instance.currencyCode,
       'value': instance.value,
-      if (instance.breakdown case final value?) 'breakdown': value,
+      if (instance.breakdown?.toJson() case final value?) 'breakdown': value,
     };
 
 AmountBreakdown _$AmountBreakdownFromJson(Map<String, dynamic> json) =>
@@ -50,12 +50,12 @@ AmountBreakdown _$AmountBreakdownFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AmountBreakdownToJson(AmountBreakdown instance) =>
     <String, dynamic>{
-      if (instance.itemTotal case final value?) 'item_total': value,
-      if (instance.shipping case final value?) 'shipping': value,
-      if (instance.handling case final value?) 'handling': value,
-      if (instance.taxTotal case final value?) 'tax_total': value,
-      if (instance.insurance case final value?) 'insurance': value,
-      if (instance.shippingDiscount case final value?)
+      if (instance.itemTotal?.toJson() case final value?) 'item_total': value,
+      if (instance.shipping?.toJson() case final value?) 'shipping': value,
+      if (instance.handling?.toJson() case final value?) 'handling': value,
+      if (instance.taxTotal?.toJson() case final value?) 'tax_total': value,
+      if (instance.insurance?.toJson() case final value?) 'insurance': value,
+      if (instance.shippingDiscount?.toJson() case final value?)
         'shipping_discount': value,
-      if (instance.discount case final value?) 'discount': value,
+      if (instance.discount?.toJson() case final value?) 'discount': value,
     };

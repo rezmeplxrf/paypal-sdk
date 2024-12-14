@@ -25,9 +25,9 @@ Map<String, dynamic> _$CaptureRequestToJson(CaptureRequest instance) =>
     <String, dynamic>{
       if (instance.invoiceId case final value?) 'invoice_id': value,
       if (instance.noteToPayer case final value?) 'note_to_payer': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
       if (instance.finalCapture case final value?) 'final_capture': value,
-      if (instance.paymentInstruction case final value?)
+      if (instance.paymentInstruction?.toJson() case final value?)
         'payment_instruction': value,
       if (instance.softDescriptor case final value?) 'soft_descriptor': value,
     };
@@ -68,21 +68,23 @@ Capture _$CaptureFromJson(Map<String, dynamic> json) => Capture(
 Map<String, dynamic> _$CaptureToJson(Capture instance) => <String, dynamic>{
       if (_$CaptureStatusEnumMap[instance.status] case final value?)
         'status': value,
-      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.statusDetails?.toJson() case final value?)
+        'status_details': value,
       if (instance.id case final value?) 'id': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
       if (instance.invoiceId case final value?) 'invoice_id': value,
       if (instance.customId case final value?) 'custom_id': value,
-      if (instance.sellerProtection case final value?)
+      if (instance.sellerProtection?.toJson() case final value?)
         'seller_protection': value,
       if (instance.finalCapture case final value?) 'final_capture': value,
-      if (instance.sellerReceivableBreakdown case final value?)
+      if (instance.sellerReceivableBreakdown?.toJson() case final value?)
         'seller_receivable_breakdown': value,
       if (_$DisbursementModeEnumMap[instance.disbursementMode]
           case final value?)
         'disbursement_mode': value,
-      if (instance.links case final value?) 'links': value,
-      if (instance.processorResponse case final value?)
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
+      if (instance.processorResponse?.toJson() case final value?)
         'processor_response': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,

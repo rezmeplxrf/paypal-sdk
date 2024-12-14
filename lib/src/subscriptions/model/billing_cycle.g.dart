@@ -19,8 +19,9 @@ BillingCycle _$BillingCycleFromJson(Map<String, dynamic> json) => BillingCycle(
 
 Map<String, dynamic> _$BillingCycleToJson(BillingCycle instance) =>
     <String, dynamic>{
-      if (instance.pricingScheme case final value?) 'pricing_scheme': value,
-      'frequency': instance.frequency,
+      if (instance.pricingScheme?.toJson() case final value?)
+        'pricing_scheme': value,
+      'frequency': instance.frequency.toJson(),
       'tenure_type': _$TenureTypeEnumMap[instance.tenureType]!,
       if (instance.sequence case final value?) 'sequence': value,
       if (instance.totalCycles case final value?) 'total_cycles': value,

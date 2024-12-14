@@ -54,5 +54,6 @@ Map<String, dynamic> _$AddressPortableToJson(AddressPortable instance) =>
       if (instance.adminArea1 case final value?) 'admin_area1': value,
       if (instance.postalCode case final value?) 'postal_code': value,
       if (instance.countryCode case final value?) 'country_code': value,
-      if (instance.addressDetails case final value?) 'address_details': value,
+      if (instance.addressDetails?.toJson() case final value?)
+        'address_details': value,
     };

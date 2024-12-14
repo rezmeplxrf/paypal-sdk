@@ -36,15 +36,18 @@ Map<String, dynamic> _$PlanToJson(Plan instance) => <String, dynamic>{
       'status': _$PlanStatusEnumMap[instance.status]!,
       'name': instance.name,
       if (instance.description case final value?) 'description': value,
-      if (instance.billingCycles case final value?) 'billing_cycles': value,
-      if (instance.paymentPreferences case final value?)
+      if (instance.billingCycles?.map((e) => e.toJson()).toList()
+          case final value?)
+        'billing_cycles': value,
+      if (instance.paymentPreferences?.toJson() case final value?)
         'payment_preferences': value,
-      if (instance.taxes case final value?) 'taxes': value,
+      if (instance.taxes?.toJson() case final value?) 'taxes': value,
       if (instance.quantitySupported case final value?)
         'quantity_supported': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 const _$PlanStatusEnumMap = {
@@ -76,9 +79,9 @@ Map<String, dynamic> _$PlanRequestToJson(PlanRequest instance) =>
       if (_$PlanStatusEnumMap[instance.status] case final value?)
         'status': value,
       if (instance.description case final value?) 'description': value,
-      'billing_cycles': instance.billingCycles,
-      'payment_preferences': instance.paymentPreferences,
-      if (instance.taxes case final value?) 'taxes': value,
+      'billing_cycles': instance.billingCycles.map((e) => e.toJson()).toList(),
+      'payment_preferences': instance.paymentPreferences.toJson(),
+      if (instance.taxes?.toJson() case final value?) 'taxes': value,
       if (instance.quantitySupported case final value?)
         'quantity_supported': value,
     };
@@ -97,10 +100,11 @@ PlanCollection _$PlanCollectionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PlanCollectionToJson(PlanCollection instance) =>
     <String, dynamic>{
-      'plans': instance.plans,
+      'plans': instance.plans.map((e) => e.toJson()).toList(),
       if (instance.totalItems case final value?) 'total_items': value,
       if (instance.totalPages case final value?) 'total_pages': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 Taxes _$TaxesFromJson(Map<String, dynamic> json) => Taxes(

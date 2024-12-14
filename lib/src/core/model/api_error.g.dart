@@ -24,6 +24,8 @@ Map<String, dynamic> _$ApiErrorToJson(ApiError instance) => <String, dynamic>{
       if (instance.message case final value?) 'message': value,
       if (instance.debugId case final value?) 'debug_id': value,
       if (instance.informationLink case final value?) 'information_link': value,
-      if (instance.details case final value?) 'details': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.details?.map((e) => e.toJson()).toList() case final value?)
+        'details': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };

@@ -29,7 +29,7 @@ Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
       'summary': instance.summary,
       if (instance.resourceVersion case final value?) 'resource_version': value,
       if (instance.resource case final value?) 'resource': value,
-      'links': instance.links,
+      'links': instance.links.map((e) => e.toJson()).toList(),
     };
 
 EventList _$EventListFromJson(Map<String, dynamic> json) => EventList(
@@ -43,9 +43,9 @@ EventList _$EventListFromJson(Map<String, dynamic> json) => EventList(
     );
 
 Map<String, dynamic> _$EventListToJson(EventList instance) => <String, dynamic>{
-      'events': instance.events,
+      'events': instance.events.map((e) => e.toJson()).toList(),
       if (instance.count case final value?) 'count': value,
-      'links': instance.links,
+      'links': instance.links.map((e) => e.toJson()).toList(),
     };
 
 ResourceVersion _$ResourceVersionFromJson(Map<String, dynamic> json) =>
@@ -71,7 +71,8 @@ Map<String, dynamic> _$EventTypeToJson(EventType instance) => <String, dynamic>{
       'name': instance.name,
       if (instance.description case final value?) 'description': value,
       if (instance.status case final value?) 'status': value,
-      if (instance.resourceVersions case final value?)
+      if (instance.resourceVersions?.map((e) => e.toJson()).toList()
+          case final value?)
         'resource_versions': value,
     };
 
@@ -84,7 +85,7 @@ EventTypeList _$EventTypeListFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$EventTypeListToJson(EventTypeList instance) =>
     <String, dynamic>{
-      'event_types': instance.eventTypes,
+      'event_types': instance.eventTypes.map((e) => e.toJson()).toList(),
     };
 
 SimulateEvent _$SimulateEventFromJson(Map<String, dynamic> json) =>

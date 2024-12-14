@@ -13,7 +13,7 @@ PaymentSource _$PaymentSourceFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PaymentSourceToJson(PaymentSource instance) =>
     <String, dynamic>{
-      'card': instance.card,
+      'card': instance.card.toJson(),
     };
 
 LastPaymentDetails _$LastPaymentDetailsFromJson(Map<String, dynamic> json) =>
@@ -28,7 +28,7 @@ LastPaymentDetails _$LastPaymentDetailsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LastPaymentDetailsToJson(LastPaymentDetails instance) =>
     <String, dynamic>{
       if (instance.status case final value?) 'status': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
       if (instance.time case final value?) 'time': value,
     };
 
@@ -45,7 +45,7 @@ FailedPaymentDetails _$FailedPaymentDetailsFromJson(
 Map<String, dynamic> _$FailedPaymentDetailsToJson(
         FailedPaymentDetails instance) =>
     <String, dynamic>{
-      'amount': instance.amount,
+      'amount': instance.amount.toJson(),
       'time': instance.time,
       if (_$FailedPaymentReasonEnumMap[instance.reasonCode] case final value?)
         'reason_code': value,
@@ -112,7 +112,7 @@ Map<String, dynamic> _$PaymentPreferencesToJson(PaymentPreferences instance) =>
     <String, dynamic>{
       if (instance.autoBillOutstanding case final value?)
         'auto_bill_outstanding': value,
-      if (instance.setupFee case final value?) 'setup_fee': value,
+      if (instance.setupFee?.toJson() case final value?) 'setup_fee': value,
       if (_$SetupFeeFailureActionEnumMap[instance.setupFeeFailureAction]
           case final value?)
         'setup_fee_failure_action': value,

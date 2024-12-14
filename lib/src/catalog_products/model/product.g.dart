@@ -31,7 +31,8 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       if (instance.homeUrl case final value?) 'home_url': value,
       'create_time': instance.createTime,
       if (instance.updateTime case final value?) 'update_time': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 const _$ProductTypeEnumMap = {
@@ -55,10 +56,11 @@ ProductCollection _$ProductCollectionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ProductCollectionToJson(ProductCollection instance) =>
     <String, dynamic>{
-      'products': instance.products,
+      'products': instance.products.map((e) => e.toJson()).toList(),
       if (instance.totalItems case final value?) 'total_items': value,
       if (instance.totalPages case final value?) 'total_pages': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 ProductCollectionElement _$ProductCollectionElementFromJson(
@@ -80,7 +82,7 @@ Map<String, dynamic> _$ProductCollectionElementToJson(
       'name': instance.name,
       if (instance.description case final value?) 'description': value,
       'create_time': instance.createTime,
-      'links': instance.links,
+      'links': instance.links.map((e) => e.toJson()).toList(),
     };
 
 ProductRequest _$ProductRequestFromJson(Map<String, dynamic> json) =>

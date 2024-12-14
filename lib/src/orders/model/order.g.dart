@@ -29,14 +29,18 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       if (instance.id case final value?) 'id': value,
-      if (instance.paymentSource case final value?) 'payment_source': value,
+      if (instance.paymentSource?.toJson() case final value?)
+        'payment_source': value,
       if (instance.intent case final value?) 'intent': value,
-      if (instance.payer case final value?) 'payer': value,
-      if (instance.purchaseUnits case final value?) 'purchase_units': value,
+      if (instance.payer?.toJson() case final value?) 'payer': value,
+      if (instance.purchaseUnits?.map((e) => e.toJson()).toList()
+          case final value?)
+        'purchase_units': value,
       if (instance.status case final value?) 'status': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 OrderRequest _$OrderRequestFromJson(Map<String, dynamic> json) => OrderRequest(
@@ -56,9 +60,9 @@ OrderRequest _$OrderRequestFromJson(Map<String, dynamic> json) => OrderRequest(
 Map<String, dynamic> _$OrderRequestToJson(OrderRequest instance) =>
     <String, dynamic>{
       'intent': _$OrderRequestIntentEnumMap[instance.intent]!,
-      if (instance.payer case final value?) 'payer': value,
-      'purchase_units': instance.purchaseUnits,
-      if (instance.applicationContext case final value?)
+      if (instance.payer?.toJson() case final value?) 'payer': value,
+      'purchase_units': instance.purchaseUnits.map((e) => e.toJson()).toList(),
+      if (instance.applicationContext?.toJson() case final value?)
         'application_context': value,
     };
 
@@ -99,10 +103,11 @@ Map<String, dynamic> _$ApplicationContextToJson(ApplicationContext instance) =>
         'shipping_preference': value,
       if (_$UserActionEnumMap[instance.userAction] case final value?)
         'user_action': value,
-      if (instance.paymentMethod case final value?) 'payment_method': value,
+      if (instance.paymentMethod?.toJson() case final value?)
+        'payment_method': value,
       if (instance.returnUrl case final value?) 'return_url': value,
       if (instance.cancelUrl case final value?) 'cancel_url': value,
-      if (instance.storedPaymentSource case final value?)
+      if (instance.storedPaymentSource?.toJson() case final value?)
         'stored_payment_source': value,
     };
 

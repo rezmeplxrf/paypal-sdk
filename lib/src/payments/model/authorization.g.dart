@@ -35,15 +35,17 @@ Map<String, dynamic> _$AuthorizationToJson(Authorization instance) =>
     <String, dynamic>{
       if (_$AuthorizationStatusEnumMap[instance.status] case final value?)
         'status': value,
-      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.statusDetails?.toJson() case final value?)
+        'status_details': value,
       if (instance.id case final value?) 'id': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
       if (instance.invoiceId case final value?) 'invoice_id': value,
       if (instance.customId case final value?) 'custom_id': value,
-      if (instance.sellerProtection case final value?)
+      if (instance.sellerProtection?.toJson() case final value?)
         'seller_protection': value,
       if (instance.expirationTime case final value?) 'expiration_time': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
     };

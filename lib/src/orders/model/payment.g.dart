@@ -56,7 +56,7 @@ Map<String, dynamic> _$StoredPaymentSourceToJson(
           _$PaymentInitiatorEnumMap[instance.paymentInitiator]!,
       'payment_type': _$PaymentTypeEnumMap[instance.paymentType]!,
       if (_$UsageEnumMap[instance.usage] case final value?) 'usage': value,
-      if (instance.networkTransactionReference case final value?)
+      if (instance.networkTransactionReference?.toJson() case final value?)
         'network_transaction_reference': value,
     };
 
@@ -121,7 +121,7 @@ PaymentSource _$PaymentSourceFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PaymentSourceToJson(PaymentSource instance) =>
     <String, dynamic>{
-      if (instance.card case final value?) 'card': value,
+      if (instance.card?.toJson() case final value?) 'card': value,
     };
 
 PaymentSourceToken _$PaymentSourceTokenFromJson(Map<String, dynamic> json) =>
@@ -131,7 +131,7 @@ PaymentSourceToken _$PaymentSourceTokenFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PaymentSourceTokenToJson(PaymentSourceToken instance) =>
     <String, dynamic>{
-      'token': instance.token,
+      'token': instance.token.toJson(),
     };
 
 Token _$TokenFromJson(Map<String, dynamic> json) => Token(
@@ -156,7 +156,8 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
 
 Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
-      if (instance.billingAddress case final value?) 'billing_address': value,
+      if (instance.billingAddress?.toJson() case final value?)
+        'billing_address': value,
       if (instance.lastDigits case final value?) 'last_digits': value,
       if (_$NetworkEnumMap[instance.brand] case final value?) 'brand': value,
     };
@@ -177,9 +178,13 @@ PaymentCollection _$PaymentCollectionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PaymentCollectionToJson(PaymentCollection instance) =>
     <String, dynamic>{
-      if (instance.authorizations case final value?) 'authorizations': value,
-      if (instance.captures case final value?) 'captures': value,
-      if (instance.refunds case final value?) 'refunds': value,
+      if (instance.authorizations?.map((e) => e.toJson()).toList()
+          case final value?)
+        'authorizations': value,
+      if (instance.captures?.map((e) => e.toJson()).toList() case final value?)
+        'captures': value,
+      if (instance.refunds?.map((e) => e.toJson()).toList() case final value?)
+        'refunds': value,
     };
 
 AuthorizationWithAdditionalData _$AuthorizationWithAdditionalDataFromJson(
@@ -192,7 +197,7 @@ AuthorizationWithAdditionalData _$AuthorizationWithAdditionalDataFromJson(
 Map<String, dynamic> _$AuthorizationWithAdditionalDataToJson(
         AuthorizationWithAdditionalData instance) =>
     <String, dynamic>{
-      'processor_response': instance.processorResponse,
+      'processor_response': instance.processorResponse.toJson(),
     };
 
 Capture _$CaptureFromJson(Map<String, dynamic> json) => Capture(
@@ -232,21 +237,22 @@ Map<String, dynamic> _$CaptureToJson(Capture instance) => <String, dynamic>{
           case final value?)
         'status_details': value,
       if (instance.id case final value?) 'id': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
       if (instance.invoiceId case final value?) 'invoice_id': value,
       if (instance.customId case final value?) 'custom_id': value,
-      if (instance.sellerProtection case final value?)
+      if (instance.sellerProtection?.toJson() case final value?)
         'seller_protection': value,
       if (instance.finalCapture case final value?) 'final_capture': value,
-      if (instance.sellerReceivableBreakdown case final value?)
+      if (instance.sellerReceivableBreakdown?.toJson() case final value?)
         'seller_receivable_breakdown': value,
       if (instance.disbursementMode case final value?)
         'disbursement_mode': value,
-      if (instance.processorResponse case final value?)
+      if (instance.processorResponse?.toJson() case final value?)
         'processor_response': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 const _$CaptureStatusReasonEnumMap = {
@@ -287,16 +293,18 @@ Refund _$RefundFromJson(Map<String, dynamic> json) => Refund(
 
 Map<String, dynamic> _$RefundToJson(Refund instance) => <String, dynamic>{
       if (instance.status case final value?) 'status': value,
-      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.statusDetails?.toJson() case final value?)
+        'status_details': value,
       if (instance.id case final value?) 'id': value,
-      if (instance.amount case final value?) 'amount': value,
+      if (instance.amount?.toJson() case final value?) 'amount': value,
       if (instance.invoiceId case final value?) 'invoice_id': value,
       if (instance.noteToPayer case final value?) 'note_to_payer': value,
       if (instance.sellerPayableBreakdown case final value?)
         'seller_payable_breakdown': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 RefundStatus _$RefundStatusFromJson(Map<String, dynamic> json) => RefundStatus(
@@ -311,7 +319,8 @@ Map<String, dynamic> _$RefundStatusToJson(RefundStatus instance) =>
     <String, dynamic>{
       if (_$RefundStatusValueEnumMap[instance.status] case final value?)
         'status': value,
-      if (instance.statusDetails case final value?) 'status_details': value,
+      if (instance.statusDetails?.toJson() case final value?)
+        'status_details': value,
     };
 
 const _$RefundStatusValueEnumMap = {
@@ -392,13 +401,16 @@ SellerReceivableBreakdown _$SellerReceivableBreakdownFromJson(
 Map<String, dynamic> _$SellerReceivableBreakdownToJson(
         SellerReceivableBreakdown instance) =>
     <String, dynamic>{
-      'gross_amount': instance.grossAmount,
-      if (instance.paypalFee case final value?) 'paypal_fee': value,
-      if (instance.paypalFeeInReceivableCurrency case final value?)
+      'gross_amount': instance.grossAmount.toJson(),
+      if (instance.paypalFee?.toJson() case final value?) 'paypal_fee': value,
+      if (instance.paypalFeeInReceivableCurrency?.toJson() case final value?)
         'paypal_fee_in_receivable_currency': value,
-      if (instance.netAmount case final value?) 'net_amount': value,
-      if (instance.receivableAmount case final value?)
+      if (instance.netAmount?.toJson() case final value?) 'net_amount': value,
+      if (instance.receivableAmount?.toJson() case final value?)
         'receivable_amount': value,
-      if (instance.exchangeRate case final value?) 'exchange_rate': value,
-      if (instance.platformFees case final value?) 'platform_fees': value,
+      if (instance.exchangeRate?.toJson() case final value?)
+        'exchange_rate': value,
+      if (instance.platformFees?.map((e) => e.toJson()).toList()
+          case final value?)
+        'platform_fees': value,
     };

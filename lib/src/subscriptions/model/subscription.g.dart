@@ -48,15 +48,18 @@ Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
         'status_update_time': value,
       if (instance.startTime case final value?) 'start_time': value,
       if (instance.quantity case final value?) 'quantity': value,
-      if (instance.shippingAmount case final value?) 'shipping_amount': value,
-      if (instance.subscriber case final value?) 'subscriber': value,
-      if (instance.billingInfo case final value?) 'billing_info': value,
+      if (instance.shippingAmount?.toJson() case final value?)
+        'shipping_amount': value,
+      if (instance.subscriber?.toJson() case final value?) 'subscriber': value,
+      if (instance.billingInfo?.toJson() case final value?)
+        'billing_info': value,
       if (instance.createTime case final value?) 'create_time': value,
       if (instance.updateTime case final value?) 'update_time': value,
       if (instance.customId case final value?) 'custom_id': value,
       if (instance.planOverridden case final value?) 'plan_overridden': value,
-      if (instance.plan case final value?) 'plan': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.plan?.toJson() case final value?) 'plan': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 const _$SubscriptionStatusEnumMap = {
@@ -92,15 +95,18 @@ SubscriptionBillingInfo _$SubscriptionBillingInfoFromJson(
 Map<String, dynamic> _$SubscriptionBillingInfoToJson(
         SubscriptionBillingInfo instance) =>
     <String, dynamic>{
-      'outstanding_balance': instance.outstandingBalance,
-      if (instance.cycleExecutions case final value?) 'cycle_executions': value,
-      if (instance.lastPayment case final value?) 'last_payment': value,
+      'outstanding_balance': instance.outstandingBalance.toJson(),
+      if (instance.cycleExecutions?.map((e) => e.toJson()).toList()
+          case final value?)
+        'cycle_executions': value,
+      if (instance.lastPayment?.toJson() case final value?)
+        'last_payment': value,
       if (instance.nextBillingTime case final value?)
         'next_billing_time': value,
       if (instance.finalPaymentTime case final value?)
         'final_payment_time': value,
       'failed_payments_count': instance.failedPaymentsCount,
-      if (instance.lastFailedPayment case final value?)
+      if (instance.lastFailedPayment?.toJson() case final value?)
         'last_failed_payment': value,
     };
 
@@ -133,13 +139,15 @@ Map<String, dynamic> _$SubscriptionRequestToJson(
     <String, dynamic>{
       'plan_id': instance.planId,
       if (instance.quantity case final value?) 'quantity': value,
-      if (instance.shippingAmount case final value?) 'shipping_amount': value,
-      if (instance.subscriber case final value?) 'subscriber': value,
-      if (instance.billingInfo case final value?) 'billing_info': value,
-      if (instance.applicationContext case final value?)
+      if (instance.shippingAmount?.toJson() case final value?)
+        'shipping_amount': value,
+      if (instance.subscriber?.toJson() case final value?) 'subscriber': value,
+      if (instance.billingInfo?.toJson() case final value?)
+        'billing_info': value,
+      if (instance.applicationContext?.toJson() case final value?)
         'application_context': value,
       if (instance.customId case final value?) 'custom_id': value,
-      if (instance.plan case final value?) 'plan': value,
+      if (instance.plan?.toJson() case final value?) 'plan': value,
     };
 
 SubscriptionCaptureRequest _$SubscriptionCaptureRequestFromJson(
@@ -157,7 +165,7 @@ Map<String, dynamic> _$SubscriptionCaptureRequestToJson(
     <String, dynamic>{
       'note': instance.note,
       'capture_type': _$CaptureTypeEnumMap[instance.captureType]!,
-      'amount': instance.amount,
+      'amount': instance.amount.toJson(),
     };
 
 const _$CaptureTypeEnumMap = {
@@ -192,11 +200,13 @@ Map<String, dynamic> _$SubscriptionReviseRequestToJson(
       'plan_id': instance.planId,
       if (instance.quantity case final value?) 'quantity': value,
       if (instance.effectiveTime case final value?) 'effective_time': value,
-      if (instance.shippingAmount case final value?) 'shipping_amount': value,
-      if (instance.shippingAddress case final value?) 'shipping_address': value,
-      if (instance.applicationContext case final value?)
+      if (instance.shippingAmount?.toJson() case final value?)
+        'shipping_amount': value,
+      if (instance.shippingAddress?.toJson() case final value?)
+        'shipping_address': value,
+      if (instance.applicationContext?.toJson() case final value?)
         'application_context': value,
-      if (instance.plan case final value?) 'plan': value,
+      if (instance.plan?.toJson() case final value?) 'plan': value,
     };
 
 SubscriptionReviseResponse _$SubscriptionReviseResponseFromJson(
@@ -230,12 +240,15 @@ Map<String, dynamic> _$SubscriptionReviseResponseToJson(
       if (instance.planId case final value?) 'plan_id': value,
       if (instance.quantity case final value?) 'quantity': value,
       if (instance.effectiveTime case final value?) 'effective_time': value,
-      if (instance.shippingAmount case final value?) 'shipping_amount': value,
-      if (instance.subscriber case final value?) 'subscriber': value,
-      if (instance.shippingAddress case final value?) 'shipping_address': value,
+      if (instance.shippingAmount?.toJson() case final value?)
+        'shipping_amount': value,
+      if (instance.subscriber?.toJson() case final value?) 'subscriber': value,
+      if (instance.shippingAddress?.toJson() case final value?)
+        'shipping_address': value,
       if (instance.planOverridden case final value?) 'plan_overridden': value,
-      if (instance.plan case final value?) 'plan': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.plan?.toJson() case final value?) 'plan': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 Subscriber _$SubscriberFromJson(Map<String, dynamic> json) => Subscriber(
@@ -259,12 +272,14 @@ Subscriber _$SubscriberFromJson(Map<String, dynamic> json) => Subscriber(
 
 Map<String, dynamic> _$SubscriberToJson(Subscriber instance) =>
     <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
+      if (instance.name?.toJson() case final value?) 'name': value,
       if (instance.emailAddress case final value?) 'email_address': value,
       'payer_id': instance.payerId,
-      if (instance.phone case final value?) 'phone': value,
-      if (instance.shippingAddress case final value?) 'shipping_address': value,
-      if (instance.paymentSource case final value?) 'payment_source': value,
+      if (instance.phone?.toJson() case final value?) 'phone': value,
+      if (instance.shippingAddress?.toJson() case final value?)
+        'shipping_address': value,
+      if (instance.paymentSource?.toJson() case final value?)
+        'payment_source': value,
     };
 
 ApplicationContext _$ApplicationContextFromJson(Map<String, dynamic> json) =>
@@ -291,7 +306,8 @@ Map<String, dynamic> _$ApplicationContextToJson(ApplicationContext instance) =>
         'shipping_preference': value,
       if (_$UserActionEnumMap[instance.userAction] case final value?)
         'user_action': value,
-      if (instance.paymentMethod case final value?) 'payment_method': value,
+      if (instance.paymentMethod?.toJson() case final value?)
+        'payment_method': value,
       'return_url': instance.returnUrl,
       'cancel_url': instance.cancelUrl,
     };

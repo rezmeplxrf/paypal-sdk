@@ -25,9 +25,9 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
       if (_$CaptureStatusEnumMap[instance.status] case final value?)
         'status': value,
       if (instance.id case final value?) 'id': value,
-      if (instance.amountWithBreakdown case final value?)
+      if (instance.amountWithBreakdown?.toJson() case final value?)
         'amount_with_breakdown': value,
-      if (instance.payerName case final value?) 'payer_name': value,
+      if (instance.payerName?.toJson() case final value?) 'payer_name': value,
       if (instance.payerEmail case final value?) 'payer_email': value,
       if (instance.time case final value?) 'time': value,
     };
@@ -54,10 +54,11 @@ TransactionsList _$TransactionsListFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TransactionsListToJson(TransactionsList instance) =>
     <String, dynamic>{
-      'transactions': instance.transactions,
+      'transactions': instance.transactions.map((e) => e.toJson()).toList(),
       if (instance.totalItems case final value?) 'total_items': value,
       if (instance.totalPages case final value?) 'total_pages': value,
-      if (instance.links case final value?) 'links': value,
+      if (instance.links?.map((e) => e.toJson()).toList() case final value?)
+        'links': value,
     };
 
 AmountWithBreakdown _$AmountWithBreakdownFromJson(Map<String, dynamic> json) =>
@@ -83,11 +84,12 @@ AmountWithBreakdown _$AmountWithBreakdownFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AmountWithBreakdownToJson(
         AmountWithBreakdown instance) =>
     <String, dynamic>{
-      'gross_amount': instance.grossAmount,
-      if (instance.totalItemAmount case final value?)
+      'gross_amount': instance.grossAmount.toJson(),
+      if (instance.totalItemAmount?.toJson() case final value?)
         'total_item_amount': value,
-      if (instance.feeAmount case final value?) 'fee_amount': value,
-      if (instance.shippingAmount case final value?) 'shipping_amount': value,
-      if (instance.taxAmount case final value?) 'tax_amount': value,
-      if (instance.netAmount case final value?) 'net_amount': value,
+      if (instance.feeAmount?.toJson() case final value?) 'fee_amount': value,
+      if (instance.shippingAmount?.toJson() case final value?)
+        'shipping_amount': value,
+      if (instance.taxAmount?.toJson() case final value?) 'tax_amount': value,
+      if (instance.netAmount?.toJson() case final value?) 'net_amount': value,
     };
